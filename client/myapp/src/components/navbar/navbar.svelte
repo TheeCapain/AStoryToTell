@@ -12,8 +12,10 @@
 <style>
 .icon-bar {
   width: 100%; /* Full-width */
-  background-color: #555; /* Dark-grey background */
+  background-color: #031927; /* Dark-grey background */
   overflow: auto; /* Overflow due to float */
+  position: fixed;
+  top: 0;
 }
 
 .icon-bar a {
@@ -27,6 +29,6 @@
 }
 
 .icon-bar a:hover {
-  background-color: #000; /* Add a hover color */
+  background-color: #508AA8; /* Add a hover color */
 }
 </style>
