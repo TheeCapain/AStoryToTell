@@ -1,7 +1,7 @@
 <script>
   import { Router, Route, Link } from "svelte-navigator";
-  import Login from "../login/in/login.svelte";
-  import PrivateRoute from "../login/privateRoute.svelte";
+  import Filmmaking from "../../pages/filmmaking.svelte";
+  import Home from "../../pages/home.svelte";
   import { user } from "./../../../global/global.js";
 
   function handleLogout() {
@@ -16,18 +16,24 @@
 <div class="icon-bar">
   <Router>
     <nav>
-      <Link to="/"><a href="/"><i class="fa fa-home">Logo</i></a></Link>
-      <Link to="/"><a href="/"><i class="fa fa-home" /></a></Link>
-      <Link to="filmmaking"><a href="/"><i class="fa fa-camera" /></a></Link>
-      <Link to="bookWriting"><a href="/"><i class="fa fa-book" /></a></Link>
-      <Link to="music"><a href="/"><i class="fa fa-music" /></a></Link>
-      <Link to="profile"><a href="/"><i class="fa fa-user" /></a></Link>
+      <Link to="/home"><a href="/"><i class="fa fa-home">Logo</i></a></Link>
+      <Link to="/home"><a href="/"><i class="fa fa-home" /></a></Link>
+      <Link to="/filmmaking"><a href="/"><i class="fa fa-camera" /></a></Link>
+      <Link to="/bookWriting"><a href="/"><i class="fa fa-book" /></a></Link>
+      <Link to="/music"><a href="/"><i class="fa fa-music" /></a></Link>
+      <Link to="/profile"><a href="/"><i class="fa fa-user" /></a></Link>
     </nav>
 
     <main>
-      <Route path="/" />
-      <Route path="/" />
-      <Route path="/filmmaking" />
+      <Route path="/home">
+        <Home />
+      </Route>
+      <Route path="/home">
+        <Home />
+      </Route>
+      <Route path="/filmmaking">
+        <Filmmaking />
+      </Route>
       <Route path="/bookwriting" />
       <Route path="/music" />
       <Route path="/profile" />

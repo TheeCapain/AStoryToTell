@@ -1,5 +1,8 @@
 <script>
-    import Home from "./public/components/home/home.svelte";
+import Navigator from "./public/components/routers/navigator.svelte";
+import Sidebar from "./public/components/sidebar/sidebar.svelte";
 </script>
 
-<Home/>
+<Navigator/>
+<Sidebar/>
+
