@@ -24,7 +24,7 @@
     .content {
         margin: 1% auto;
         width: 40%;
-        height: 400px;
+        height: auto;
         border: 3px solid black;
         padding: 10px;
         box-shadow: black 2px;

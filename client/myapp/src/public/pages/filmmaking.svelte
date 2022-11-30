@@ -1,6 +1,19 @@
 <script>
-import Navbar from "../components/navbar/navbar.svelte";
-import Sidebar from "../components/sidebar/sidebar.svelte";
 </script>
-<Navbar/>
-<Sidebar />
+
+<body>
+<p class="trend">Hello world</p>
+</body>
+
+
+<style>
+    body {
+        background-color: white;
+    }
+
+    .trend {
+        margin: 0 auto;
+        width: 40%;
+        top: 20%;
+    }
+</style>

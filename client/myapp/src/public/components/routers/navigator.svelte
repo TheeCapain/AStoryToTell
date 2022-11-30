@@ -15,12 +15,12 @@
 />
 <div class="icon-bar">
   <Router>
-    <nav>
+    <nav id="icon-bar">
       <Link to="/home"><a href="/"><i class="fa fa-home">Logo</i></a></Link>
       <Link to="/home"><a href="/"><i class="fa fa-home" /></a></Link>
       <Link to="/filmmaking"><a href="/"><i class="fa fa-camera" /></a></Link>
       <Link to="/bookWriting"><a href="/"><i class="fa fa-book" /></a></Link>
-      <Link to="/music"><a href="/"><i class="fa fa-music" /></a></Link>
+      <Link to="/about"><a href="/"><i class="fa fa-music" /></a></Link>
       <Link to="/profile"><a href="/"><i class="fa fa-user" /></a></Link>
     </nav>
 
@@ -39,14 +39,13 @@
       <Route path="/profile" />
     </main>
   </Router>
-</div>
 
+</div>
 <style>
   .icon-bar {
     width: 100%; /* Full-width */
     background-color: #031927; /* Dark-grey background */
-    overflow: auto; /* Overflow due to float */
-    position: fixed;
+    position: sticky; 
     top: 0;
   }
 
@@ -57,7 +56,9 @@
     padding: 12px 0; /* Some top and bottom padding */
     transition: all 0.3s ease; /* Add transition for hover effects */
     color: white; /* White text color */
+    background-color: #031927;
     font-size: 36px; /* Increased font size */
+
   }
 
   .icon-bar a:hover {

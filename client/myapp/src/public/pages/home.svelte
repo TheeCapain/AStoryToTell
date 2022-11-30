@@ -1,11 +1,7 @@
 <script>
-    import Navbar from "../components/navbar/navbar.svelte";
-    import Sidebar from "../components/sidebar/sidebar.svelte";
     import Event from "../components/event/event.svelte";
 </script>
 
-<Navbar />
-<Sidebar />
 <body>
     <br />
     <br />
