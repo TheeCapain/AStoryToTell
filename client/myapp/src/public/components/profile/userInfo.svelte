@@ -5,12 +5,39 @@
     <div class="user_picture">
         <img src="../" alt="" />
     </div>
-    <div class="user_name">
-        <h1>Name</h1>
+    <div class="info">
+        <div class="user_name">
+            <h1>Name</h1>
+        </div>
+        <div class="address">
+            <p>Adresse</p>
+        </div>
+        <div class="mail">
+            <p>Email</p>
+        </div>
+        <div class="telefon">
+            <p>Telefon</p>
+        </div>
+        <div class="user_bio">
+            <h1>User Bio</h1>
+            <p>Lorem ipsum text</p>
+        </div>
+        <div class="knap">
+           <button>Knap</button>
+        </div>
+
     </div>
-    <div class="user_bio">
-        <h1>User Bio</h1>
-        <p>Lorem ipsum text</p>
+    <div class="stats">
+        <div class="antal_opslag">
+            <h1>Antal opslag</h1>
+        </div>
+        <div class="point">
+            <h1>Antal point</h1>
+        </div>
+        <div class="job">
+            <h1>Jobbeskrivelse</h1>
+            <p>Instruktør</p>
+        </div>
     </div>
     <div class="user_stats">
 
@@ -20,30 +47,52 @@
 <style>
     .user_info {
         margin: 0 0 0 16.65%;
-        width: 83.335%;
-        height: 220px;
         border: 1px solid black;
-        display: inline-flex;
+        display: grid;
+  grid-template-columns: 1fr 2fr 2fr;
+        background-color: #f9f9f9;
+    }
+
+    .user_info h1{
+font-size: 20px;
+text-align: left;
+font-family: 'Roboto', sans-serif;
     }
 
     .user_picture {
-        height: 125px;
-        width: 125px;
-        margin: 25px 25px;
+        height: 225px;
+        width: 225px;
+        margin: 25px 50px;
         border-radius: 100px;
         border: 1px solid black;
     }
 
-    .user_name {
+    .antal_opslag, .point, .job {
+        margin-right: 50px;
+        padding: 5px 50px 5px 15px;
+        border-radius: 5px;
+        box-shadow: -1px 2px 15px -1px rgba(0,0,0,0.46);
+-webkit-box-shadow: -1px 2px 8px -1px rgba(0,0,0,0.35);
+margin-bottom: 20px;
 
-        margin: 50px 50px;
     }
 
-    .user_bio{
-      
-        height: 125px;
-        width: 750px;
-        margin: 25px 250px;
-        border: 1px solid black;
+    .antal_opslag {
+margin-top: 20px;
     }
+
+    button {
+        padding: 10px 50px 10px 50px;
+        cursor: pointer;
+        border: none;
+        background-color: #87ab69;
+        font-size: 16px;
+        border-radius: 3px;
+    }
+
+    p {
+        font-family: 'Roboto', sans-serif;
+    }
+
+
 </style>

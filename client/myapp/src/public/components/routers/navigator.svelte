@@ -29,9 +29,6 @@
       <Route path="/home">
         <Home />
       </Route>
-      <Route path="/home">
-        <Home />
-      </Route>
       <Route path="/filmmaking">
         <Filmmaking />
       </Route>
@@ -47,7 +44,7 @@
 <style>
   .icon-bar {
     width: 100%; /* Full-width */
-    position: fixed;
+    position: sticky;
     top: 0;
   }
 
