@@ -6,7 +6,7 @@
 </script>
 
 <div class="content">
-    <h1 class="headline">Black Widow</h1>
+    <h1 class="headline">{headline}Black Widow</h1>
     <img class="image" src="${poster}" alt="poster attribute" />
     <div class="text">
         <p>
@@ -27,7 +27,6 @@
         height: auto;
         border: 3px solid black;
         padding: 10px;
-        box-shadow: black 2px;
     }
 
     .image {

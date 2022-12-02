@@ -1,7 +1,8 @@
 <script>
   import { Router, Route, Link } from "svelte-navigator";
-  import Filmmaking from "../../pages/filmmaking.svelte";
-  import Home from "../../pages/home.svelte";
+  import Filmmaking from "../../pages/filmmaking/filmmaking.svelte";
+  import Home from "../../pages/home/home.svelte";
+  import Profile from "../../pages/profile/profile.svelte";
   import { user } from "./../../../global/global.js";
 
   function handleLogout() {
@@ -36,29 +37,29 @@
       </Route>
       <Route path="/bookwriting" />
       <Route path="/music" />
-      <Route path="/profile" />
+      <Route path="/profile">
+        <Profile />
+      </Route>
     </main>
   </Router>
-
 </div>
+
 <style>
   .icon-bar {
     width: 100%; /* Full-width */
-    background-color: #031927; /* Dark-grey background */
-    position: sticky; 
+    position: fixed;
     top: 0;
   }
 
   .icon-bar a {
     float: left; /* Float links side by side */
     text-align: center; /* Center-align text */
-    width: 16.65%; /* Equal width (5 icons with 20% width each = 100%) */
+    width: 16.665%; /* Equal width (5 icons with 20% width each = 100%) */
     padding: 12px 0; /* Some top and bottom padding */
     transition: all 0.3s ease; /* Add transition for hover effects */
     color: white; /* White text color */
     background-color: #031927;
     font-size: 36px; /* Increased font size */
-
   }
 
   .icon-bar a:hover {
