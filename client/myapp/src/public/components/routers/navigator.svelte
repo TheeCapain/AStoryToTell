@@ -1,9 +1,10 @@
 <script>
   import { Router, Route, Link } from "svelte-navigator";
-  import Filmmaking from "../../pages/filmmaking/filmmaking.svelte";
   import Home from "../../pages/home/home.svelte";
   import Profile from "../../pages/profile/profile.svelte";
   import { user } from "./../../../global/global.js";
+  import Login from "../../pages/login/login.svelte";
+  import PrivateRoute from "../login/privateRoute.svelte";
 
   function handleLogout() {
     $user = null;
@@ -26,17 +27,21 @@
     </nav>
 
     <main>
+      <Route path="login">
+        <Login />
+      </Route>
       <Route path="/home">
         <Home />
       </Route>
-      <Route path="/filmmaking">
-        <Filmmaking />
-      </Route>
+      <Route path="/filmmaking" />
       <Route path="/bookwriting" />
       <Route path="/music" />
-      <Route path="/profile">
-        <Profile />
-      </Route>
+      <PrivateRoute path="/profile" let:location>
+
+        <Profile/>
+        <h3>Welcome {$user.username}</h3>
+        <button on:click={handleLogout}>Logout</button>
+      </PrivateRoute>
     </main>
   </Router>
 </div>

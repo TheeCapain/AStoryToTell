@@ -6,6 +6,10 @@
 </script>
 <body>
     <div class="content">
+        <div class="user">
+            <img class="user_photo" src="" alt="">
+             <a href="/profile"><p>Username</p></a>
+        </div>
         <h1 class="headline">{headline}Black Widow</h1>
         <img class="image" src="${poster}" alt="poster attribute" />
         <div class="text">
@@ -27,6 +31,17 @@
         margin: 3% 17%;
         width: 70%;
         top: 20%;
+    }
+
+    .user{
+        display: inline-flex;
+    }
+
+    .user_photo{
+        height: 50px;
+        width: 50px;
+        border-radius: 100px;
+        border: 1px solid black;
     }
     .content {
         margin: 1% auto;

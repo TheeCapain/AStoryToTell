@@ -1,4 +1,5 @@
 <script>
+    import { user } from "./../../../global/global.js";
 </script>
 
 <div class="user_info">
@@ -7,7 +8,7 @@
     </div>
     <div class="info">
         <div class="user_name">
-            <h1>Name</h1>
+            <h1>{$user.username}</h1>
         </div>
         <div class="address">
             <p>Adresse</p>
@@ -23,9 +24,8 @@
             <p>Lorem ipsum text</p>
         </div>
         <div class="knap">
-           <button>Knap</button>
+            <button>Knap</button>
         </div>
-
     </div>
     <div class="stats">
         <div class="antal_opslag">
@@ -39,9 +39,7 @@
             <p>Instruktør</p>
         </div>
     </div>
-    <div class="user_stats">
-
-    </div>
+    <div class="user_stats" />
 </div>
 
 <style>
@@ -49,14 +47,14 @@
         margin: 0 0 0 16.65%;
         border: 1px solid black;
         display: grid;
-  grid-template-columns: 1fr 2fr 2fr;
+        grid-template-columns: 1fr 2fr 2fr;
         background-color: #f9f9f9;
     }
 
-    .user_info h1{
-font-size: 20px;
-text-align: left;
-font-family: 'Roboto', sans-serif;
+    .user_info h1 {
+        font-size: 20px;
+        text-align: left;
+        font-family: "Roboto", sans-serif;
     }
 
     .user_picture {
@@ -67,18 +65,19 @@ font-family: 'Roboto', sans-serif;
         border: 1px solid black;
     }
 
-    .antal_opslag, .point, .job {
+    .antal_opslag,
+    .point,
+    .job {
         margin-right: 50px;
         padding: 5px 50px 5px 15px;
         border-radius: 5px;
-        box-shadow: -1px 2px 15px -1px rgba(0,0,0,0.46);
--webkit-box-shadow: -1px 2px 8px -1px rgba(0,0,0,0.35);
-margin-bottom: 20px;
-
+        box-shadow: -1px 2px 15px -1px rgba(0, 0, 0, 0.46);
+        -webkit-box-shadow: -1px 2px 8px -1px rgba(0, 0, 0, 0.35);
+        margin-bottom: 20px;
     }
 
     .antal_opslag {
-margin-top: 20px;
+        margin-top: 20px;
     }
 
     button {
@@ -91,8 +90,6 @@ margin-top: 20px;
     }
 
     p {
-        font-family: 'Roboto', sans-serif;
+        font-family: "Roboto", sans-serif;
     }
-
-
 </style>

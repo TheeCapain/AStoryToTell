@@ -1,3 +1,13 @@
+<script>
+  import { Router, Route, Link } from "svelte-navigator";
+  import PrivateRoute from "../login/privateRoute.svelte";
+  import { user } from "../../../global/global.js";
+
+  function handleLogout() {
+    $user = null;
+  }
+</script>
+
 <link
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -10,6 +20,7 @@
   <a href="/">Notes</a>
   <a href="/">other things</a>
   <a href="/">about us</a>
+  <button on:click={handleLogout}>Logout</button>
 </div>
 
 <style>
