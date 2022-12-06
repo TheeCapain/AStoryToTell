@@ -1,43 +1,65 @@
 <script>
     import { useNavigate, useLocation } from "svelte-navigator";
-    import {user} from '../../../../global/global.js'
-  
+    import { user } from "../../../../global/global.js";
+
     const navigate = useNavigate();
     const location = useLocation();
-  
-    let username;
-    let password;
-  
-    function handleSubmit() {
-      $user = { username, password };
-      const from = ($location.state && $location.state.from) || "/profile";
-      navigate(from, { replace: true });
-    }
-  </script>
 
-    <div class="login-form">
-        <h3>Login</h3>
-        <form on:submit={handleSubmit}>
-            <input
-                bind:value={username}
-                type="text"
-                name="username"
-                placeholder="Username"
-            />
-            <br />
-            <input
-                bind:value={password}
-                type="password"
-                name="password"
-                placeholder="Password"
-            />
-            <br />
-            <button type="submit">Login</button>
-        </form>
-    </div>
+    let login_email;
+    let login_password;
+
+    async function handleSignIn() {
+        const user = {
+            email: login_email,
+            password: login_password,
+        };
+
+        let response = await fetch(`http://localhost:8080/api/login`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json;charset=utf-8",
+            },
+            body: JSON.stringify(user),
+        });
+        alert("Helo")
+
+        if (response) {
+            alert("user is logged in");
+            handleSubmit()
+          
+        }
+    }
+
+    function handleSubmit() {
+        $user = { login_email, login_password };
+        const from = ($location.state && $location.state.from) || "/profile";
+        navigate(from, { replace: true });
+       
+    }
+</script>
+
+<div class="login-form">
+    <h3>Login</h3>
+    <form on:submit={handleSignIn}>
+        <input
+            bind:value={login_email}
+            type="text"
+            name="email"
+            placeholder="Email"
+        />
+        <br />
+        <input
+            bind:value={login_password}
+            type="password"
+            name="password"
+            placeholder="Password"
+        />
+        <br />
+        <button type="submit">Login</button>
+    </form>
+</div>
 
 <style>
-
     .login-form {
         margin: auto auto;
         width: 40%;

@@ -10,6 +10,9 @@ app.use(userRouter)
 //SIGNUP ROUTER
 import signupRouter from './routers/signup/signupRouter.js'
 app.use(signupRouter)
+//LOGIN ROUTER
+import loginRouter from './routers/login/loginRouter.js'
+app.use(loginRouter)
 
 app.use(express.json());
 
