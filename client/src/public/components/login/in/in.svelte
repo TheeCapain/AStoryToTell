@@ -34,7 +34,6 @@
             <br />
             <button type="submit">Login</button>
         </form>
-        <button type="submit">not a member?</button>
     </div>
 
 <style>

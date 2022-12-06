@@ -1,25 +1,18 @@
-import { Router } from 'express'
+import { response, Router } from 'express'
 import db from '../../database/connection_sqlite.js'
-import bcrypt from 'bcrypt'
+import { passwordHashing } from "../../utils/encryption.js";
 
 const signupRouter = Router();
-const saltRounds = 10;
-
-const salt = bcrypt.genSaltSync(saltRounds);
-
-function hashPW(pw) {
-    const hashedPW = bcrypt.hashSync(pw, salt);
-    return hashedPW
-}
 
 
-signupRouter.get("/api/signup", async (req, res) => {
-    console.log(req.body.email)
 
-    const hashedPw = hashPW(req.body.pswd)
+signupRouter.post("/api/signup", async (req, res) => {
+    console.log("We are in backend")
+    console.log(req.body)
 
-    console.log(hashedPw)
-    await db.run(`INSERT INTO users (user_mail, user_pw) VALUES (?, ?)`, [req.body.email, hashedPw])
+    //await db.run(`INSERT INTO users (user_name, user_mail, user_pw) VALUES (?, ?, ?)`, [req.body.username, req.body.email, hashedPw])
+
+    res.send(response.ok)
 
 })
 
