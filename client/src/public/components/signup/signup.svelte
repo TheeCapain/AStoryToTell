@@ -30,6 +30,7 @@
                 },
                 body: JSON.stringify(user),
             });
+            
             if (response.ok) {
                 alert("Response is good" + response);
             }
