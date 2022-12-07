@@ -1,4 +1,4 @@
-import { Router } from 'express'
+import { response, Router } from 'express'
 import db from '../../database/connection_sqlite.js'
 import { passwordCompare } from '../../utils/encryption.js';
 
@@ -17,7 +17,7 @@ loginRouter.post("/api/login", async (req, res, next) => {
         if (await passwordCompare(req.body.password, user.user_pw)) {
             console.log("Password match")
             console.log(user)
-            return res.json({ user })
+            return res.send(user);
         }
     } else {
         console.log("some error")
@@ -26,6 +26,10 @@ loginRouter.post("/api/login", async (req, res, next) => {
 
 
 });
+
+loginRouter.get("/logout", (req, res) => {
+
+})
 
 
 export default loginRouter

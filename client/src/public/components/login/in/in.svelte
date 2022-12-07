@@ -21,13 +21,9 @@
             },
             body: JSON.stringify(login_user),
         });
-
-        alert(response)
-    
-        $user = { response, login_email };
+        alert("user is logged in");
         if (response.ok) {
-            alert("user is logged in");
-           
+            $user = { response };
             console.log($user);
             const from =
                 ($location.state && $location.state.from) || "/profile";
