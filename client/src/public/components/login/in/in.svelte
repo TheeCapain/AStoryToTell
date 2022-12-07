@@ -31,7 +31,8 @@
     }
 
     function handleSubmit() {
-        $user = { login_email, login_password };
+        $user = { login_email };
+        console.log($user)
         const from = ($location.state && $location.state.from) || "/profile";
         navigate(from, { replace: true });
        
