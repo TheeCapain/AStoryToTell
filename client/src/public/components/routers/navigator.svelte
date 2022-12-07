@@ -6,9 +6,6 @@
   import Login from "../../pages/login/login.svelte";
   import PrivateRoute from "../login/privateRoute.svelte";
 
-  function handleLogout() {
-    $user = null;
-  }
 </script>
 
 <link
@@ -37,10 +34,7 @@
       <Route path="/bookwriting" />
       <Route path="/music" />
       <PrivateRoute path="/profile" let:location>
-
         <Profile/>
-        <h3>Welcome {$user.username}</h3>
-        <button on:click={handleLogout}>Logout</button>
       </PrivateRoute>
     </main>
   </Router>

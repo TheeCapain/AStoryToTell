@@ -9,7 +9,7 @@
     let login_password;
 
     async function handleSignIn() {
-        const user = {
+        const login_user = {
             email: login_email,
             password: login_password,
         };
@@ -19,23 +19,20 @@
             headers: {
                 "Content-Type": "application/json;charset=utf-8",
             },
-            body: JSON.stringify(user),
+            body: JSON.stringify(login_user),
         });
-        alert("Helo")
 
-        if (response) {
+        alert(response)
+    
+        $user = { response, login_email };
+        if (response.ok) {
             alert("user is logged in");
-            handleSubmit()
-          
+           
+            console.log($user);
+            const from =
+                ($location.state && $location.state.from) || "/profile";
+            navigate(from, { replace: true });
         }
-    }
-
-    function handleSubmit() {
-        $user = { login_email };
-        console.log($user)
-        const from = ($location.state && $location.state.from) || "/profile";
-        navigate(from, { replace: true });
-       
     }
 </script>
 
