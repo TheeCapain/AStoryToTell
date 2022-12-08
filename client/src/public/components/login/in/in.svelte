@@ -7,6 +7,7 @@
 
     let login_email;
     let login_password;
+    let username;
 
     async function handleSignIn() {
         const login_user = {
@@ -17,13 +18,14 @@
         let response = await fetch(`http://localhost:8080/api/login`, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json;charset=utf-8",
+                "content-type": "application/json",
             },
             body: JSON.stringify(login_user),
         });
-        alert("user is logged in");
+        let data = await response.json();
+        let username = data.user
         if (response.ok) {
-            $user = { response };
+            $user = {username};
             console.log($user);
             const from =
                 ($location.state && $location.state.from) || "/profile";
@@ -34,7 +36,7 @@
 
 <div class="login-form">
     <h3>Login</h3>
-    <form on:submit={handleSignIn}>
+    <form>
         <input
             bind:value={login_email}
             type="text"
@@ -49,7 +51,7 @@
             placeholder="Password"
         />
         <br />
-        <button type="submit">Login</button>
+        <button type="button" on:click={handleSignIn}>Login</button>
     </form>
 </div>
 
