@@ -1,6 +1,6 @@
 <script>
     //https://api.themoviedb.org/3/list/1?api_key=4a86f1670d0ac4ac719f017669984e10 A movie list of marvel movies
-    let headline = "Hello ";
+    let headline;
     let description;
     let poster;
 </script>

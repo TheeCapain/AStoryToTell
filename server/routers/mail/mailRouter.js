@@ -6,33 +6,36 @@ const mailRouter = Router()
 mailRouter.post("/api/mails/welcome", async (req, res) => {
     console.log(req.body.email)
     const email = req.body.email
-
+    //Validate if email exists in DB
     handleEmail()
 })
-async function handleEmail(){
+
+async function handleEmail() {
     const transporter = nodemailer.createTransport({
-        host: 'smtp.ethereal.email',
+        host: 'smtp.gmail.com',
         port: 587,
         auth: {
-            user: 'pinkie15@ethereal.email',
-            pass: 'KDFAXpr6Rt3H1jJxuu'
+            user: 'AStoryToTell.confirmation@gmail.com',
+            pass: 'gbmnjtudhkfnphao'
         }
     });
-    
-        let info = await transporter.sendMail({
-            from: '"Pinkie Moen" <pinkie15@ethereal.email>',
-            to: "rhoda52@ethereal.email",
-            subject: "Welcome to the Weather",
-            text: "You are now signed up to view the weather... didnt think youd have to",
-            html: "<b>Hello world?</b>",
-          });
-    
-    
-    
+
+    let info = await transporter.sendMail({
+        from: '"A Story To Tell Confirmation" <AStoryToTell.confirmation@gmail.com>',
+        to: "Augusthauerslev@outlook.com",
+        subject: "Welcome to the Weather",
+        text: "You are now signed up to view the weather... didnt think youd have to",
+        html: "<b>Hello world?</b>",
+    });
+
+
+
+
     console.log("Message sent: %s", info.messageId);
-    
+
     console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-    
-    }
+
+}
+
 
 export default mailRouter

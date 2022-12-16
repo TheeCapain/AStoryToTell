@@ -13,6 +13,8 @@ app.use(signupRouter)
 //LOGIN ROUTER
 import loginRouter from './routers/login/loginRouter.js'
 app.use(loginRouter)
+import mailRouter from "./routers/mail/mailRouter.js";
+app.use(mailRouter)
 
 app.use(express.json());
 
