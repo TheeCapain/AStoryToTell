@@ -5,10 +5,11 @@ import dotenv from "dotenv"
 dotenv.config()
 
 const mailRouter = Router()
+let email;
 
 mailRouter.post("/api/mails/welcome", async (req, res) => {
     console.log(req.body.email)
-    const email = req.body.email
+    email = req.body.email
     //Validate if email exists in DB
     handleEmail()
 })
@@ -16,7 +17,7 @@ mailRouter.post("/api/mails/welcome", async (req, res) => {
 async function handleEmail() {
     const transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com',
-        port: 587,
+        port: 587, //secure = false, kan laves true med tls
         auth: {
             user: process.env.EMAIL_USER,
             pass: process.env.EMAIL_PASS
@@ -25,7 +26,7 @@ async function handleEmail() {
 
     let info = await transporter.sendMail({
         from: '"A Story To Tell Confirmation" <AStoryToTell.confirmation@gmail.com>',
-        to: "arrgusthauerslev@gmail.com",// usermail skal sættes ind her
+        to: email,// usermail skal sættes ind her
         subject: "Welcome to the Weather",
         text: "Account created successfully",
         html: `
