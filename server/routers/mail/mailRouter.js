@@ -1,35 +1,45 @@
 import { Router } from 'express'
 import nodemailer from 'nodemailer'
 import dotenv from "dotenv"
+import db from '../../database/connection_sqlite.js'
 
 dotenv.config()
 
 const mailRouter = Router()
-let email;
+let email = "";
 
 mailRouter.post("/api/mails/welcome", async (req, res) => {
-    console.log(req.body.email)
-    email = req.body.email
-    //Validate if email exists in DB
-    handleEmail()
+
+  console.log("we are in nodemailer")
+  console.log(req.body)
+
+  const user = await db.run("SELECT * FROM users WHERE user_mail=?", [req.body.email])
+  console.log(user.user_email)
+
+  email = req.body.email
+  console.log(email)
+  //Validate if email exists in DB
+  handleEmail(email)
+
+  res.status(200).send({ user: user.user_name });
 })
 
-async function handleEmail() {
-    const transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 587, //secure = false, kan laves true med tls
-        auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS
-        }
-    });
+export async function handleEmail(userEmail) {
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 587, //secure = false, kan laves true med tls
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS
+    }
+  });
 
-    let info = await transporter.sendMail({
-        from: '"A Story To Tell Confirmation" <AStoryToTell.confirmation@gmail.com>',
-        to: email,// usermail skal sættes ind her
-        subject: "Welcome to the Weather",
-        text: "Account created successfully",
-        html: `
+  let info = await transporter.sendMail({
+    from: '"A Story To Tell Confirmation" <AStoryToTell.confirmation@gmail.com>',
+    to: userEmail,// usermail skal sættes ind her
+    subject: "Welcome to the Weather",
+    text: "Account created successfully",
+    html: `
         <head>
           <meta name="viewport" content="width=device-width" />
           <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -291,13 +301,12 @@ async function handleEmail() {
             </tr>
           </table>
         </body>`,
-    });
+  });
 
-    console.log("Message sent: %s", info.messageId);
+  console.log("Message sent: %s", info.messageId);
 
-    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 
 }
 
-handleEmail()
 export default mailRouter

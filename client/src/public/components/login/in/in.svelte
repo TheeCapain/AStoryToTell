@@ -7,9 +7,9 @@
 
     let login_email;
     let login_password;
-    let username;
 
     async function handleSignIn() {
+
         const login_user = {
             email: login_email,
             password: login_password,

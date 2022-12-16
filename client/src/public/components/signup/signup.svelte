@@ -1,5 +1,9 @@
 <script>
-    import { user, BASE_URL } from "./../../../global/global.js";
+    import { user } from "./../../../global/global.js";
+    import { useNavigate, useLocation } from "svelte-navigator";
+
+    const navigate = useNavigate();
+    const location = useLocation();
 
     let signup_username;
     let signup_email;
@@ -10,28 +14,28 @@
         console.log("We are now in the signup function");
 
         if (signup_password === confirmpw) {
-            console.log("matching passwords");
-
-            alert(signup_username + signup_email)
-
-            const user = {
-                // @ts-ignore
+            const signup_user = {
                 username: signup_username,
-                // @ts-ignore
                 email: signup_email,
-                // @ts-ignore
                 password: signup_password,
             };
 
             let response = await fetch(`http://localhost:8080/api/signup`, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json;charset=utf-8",
+                    "content-type": "application/json",
                 },
-                body: JSON.stringify(user),
+                body: JSON.stringify(signup_user),
             });
-            
+
+            let username = signup_user.username
+
             if (response.ok) {
+                $user = { username };
+                alert(signup_username);
+                const from =
+                    ($location.state && $location.state.from) || "/profile";
+                navigate(from, { replace: true });
                 alert("Response is good" + response);
             }
         }
@@ -41,7 +45,7 @@
 <div class="signup">
     <h3>Or create a new account</h3>
     <h3>Signup</h3>
-    <form on:submit={handleSignup}>
+    <form>
         <input
             bind:value={signup_username}
             id="username"
@@ -73,7 +77,7 @@
             placeholder="confirm password"
         />
         <br />
-        <button type="submit">signup</button>
+        <button type="button" on:click={handleSignup}>Signup</button>
     </form>
 </div>
 
