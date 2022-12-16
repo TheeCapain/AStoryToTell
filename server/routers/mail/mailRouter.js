@@ -4,8 +4,6 @@ import dotenv from "dotenv"
 
 dotenv.config()
 
-console.log(process.env.EMAIL_USER)
-
 const mailRouter = Router()
 
 mailRouter.post("/api/mails/welcome", async (req, res) => {
@@ -27,7 +25,7 @@ async function handleEmail() {
 
     let info = await transporter.sendMail({
         from: '"A Story To Tell Confirmation" <AStoryToTell.confirmation@gmail.com>',
-        to: "arrgusthauerslev@gmail.com",
+        to: "arrgusthauerslev@gmail.com",// usermail skal sættes ind her
         subject: "Welcome to the Weather",
         text: "Account created successfully",
         html: `
@@ -299,6 +297,6 @@ async function handleEmail() {
     console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 
 }
-handleEmail()
 
+handleEmail()
 export default mailRouter
