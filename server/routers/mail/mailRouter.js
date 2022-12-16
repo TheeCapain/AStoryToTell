@@ -1,5 +1,10 @@
 import { Router } from 'express'
 import nodemailer from 'nodemailer'
+import dotenv from "dotenv"
+
+dotenv.config()
+
+console.log(process.env.EMAIL_USER)
 
 const mailRouter = Router()
 
@@ -15,14 +20,14 @@ async function handleEmail() {
         host: 'smtp.gmail.com',
         port: 587,
         auth: {
-            user: 'AStoryToTell.confirmation@gmail.com',
-            pass: 'gbmnjtudhkfnphao'
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS
         }
     });
 
     let info = await transporter.sendMail({
         from: '"A Story To Tell Confirmation" <AStoryToTell.confirmation@gmail.com>',
-        to: "Augusthauerslev@outlook.com",
+        to: "arrgusthauerslev@gmail.com",
         subject: "Welcome to the Weather",
         text: "Account created successfully",
         html: `
