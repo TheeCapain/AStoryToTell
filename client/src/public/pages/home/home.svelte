@@ -5,16 +5,6 @@
 <body>
     <h1 class="trend">Stories most recently told</h1>
     <Event />
-    <Event />
-    <Event />
-    <Event />
-    <Event />
-    <Event />
-    <Event />
-    <Event />
-    <Event />
-    <Event />
-    <Event />
 </body>
 
 <style>

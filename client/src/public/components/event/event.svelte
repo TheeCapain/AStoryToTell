@@ -8,41 +8,28 @@
         let response = await fetch(
             "https://api.themoviedb.org/3/list/1?api_key=4a86f1670d0ac4ac719f017669984e10"
         ).then((response) => response.json());
-        posts = await response.items
-        if (response.ok) {
-           
-            return response;
-        } else {
-            throw new Error(response);
-        }
+        posts = await response.items;
     }
-fetchMovies()
-console.log(posts)
+    fetchMovies();
     //https://api.themoviedb.org/3/list/1?api_key=4a86f1670d0ac4ac719f017669984e10 A movie list of marvel movies
 </script>
 
 <body>
-    {#each posts as post, i}
+    {#each posts as post}
         <div class="content">
             <div class="user">
                 <img class="user_photo" src="" alt="" />
                 <a href="/profile"><p>Username</p></a>
             </div>
-            <h1 class="headline">{headline}Black Widow</h1>
+            <h1 class="headline">{post.original_title}</h1>
             <img
                 class="image"
-                src="https://image.tmdb.org/t/p/original/keIxh0wPr2Ymj0Btjh4gW7JJ89e.jpg"
+                src="https://image.tmdb.org/t/p/original/{post.backdrop_path}"
                 alt="poster attribute"
             />
             <div class="text">
                 <p>
-                    {description}
-                    Natasha Romanoff, also known as Black Widow, confronts the darker
-                    parts of her ledger when a dangerous conspiracy with ties to
-                    her past arises. Pursued by a force that will stop at nothing
-                    to bring her down, Natasha must deal with her history as a spy
-                    and the broken relationships left in her wake long before she
-                    became an Avenger.
+                    {post.overview}
                 </p>
             </div>
         </div>
