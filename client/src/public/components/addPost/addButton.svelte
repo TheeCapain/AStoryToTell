@@ -1,0 +1,23 @@
+<script>
+    import { user } from "../../../global/global";
+</script>
+
+<div class="content">
+    <div class="knap">
+        <button>+ New Post</button>
+    </div>
+</div>
+
+<style>
+    .content {
+        width: 70%;
+    }
+    button {
+        padding: 10px 50px 10px 50px;
+        cursor: pointer;
+        border: none;
+        background-color: #87ab69;
+        font-size: 16px;
+        border-radius: 3px;
+    }
+</style>

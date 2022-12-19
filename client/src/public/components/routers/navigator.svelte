@@ -4,7 +4,7 @@
   import Profile from "../../pages/profile/profile.svelte";
   import Login from "../../pages/login/login.svelte";
   import PrivateRoute from "../login/privateRoute.svelte";
-
+  import NewPost from "../../pages/posts/newPost.svelte";
 </script>
 
 <link
@@ -14,7 +14,7 @@
 <div class="icon-bar">
   <Router>
     <nav id="icon-bar">
-      <Link to="/home">  <a href="/"><i class="fa fa-home">Logo</i></a></Link>
+      <Link to="/home"><a href="/"><i class="fa fa-home">Logo</i></a></Link>
       <Link to="/home"><a href="/"><i class="fa fa-home" /></a></Link>
       <Link to="/filmmaking"><a href="/"><i class="fa fa-camera" /></a></Link>
       <Link to="/bookWriting"><a href="/"><i class="fa fa-book" /></a></Link>
@@ -29,11 +29,14 @@
       <Route path="/home">
         <Home />
       </Route>
+      <Route path="/newPost">
+        <NewPost />
+      </Route>
       <Route path="/filmmaking" />
       <Route path="/bookwriting" />
       <Route path="/music" />
       <PrivateRoute path="/profile" let:location>
-        <Profile/>
+        <Profile />
       </PrivateRoute>
     </main>
   </Router>

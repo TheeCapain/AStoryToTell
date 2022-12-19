@@ -25,7 +25,7 @@
             <p>Lorem ipsum text</p>
         </div>
         <div class="knap">
-            <button>Knap</button>
+            <button>+ New Post</button>
         </div>
     </div>
     <div class="stats">

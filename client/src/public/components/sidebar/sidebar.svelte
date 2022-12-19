@@ -1,10 +1,8 @@
 <script>
-  import Home from "../../pages/home/home.svelte";
-  import Profile from "../../pages/profile/profile.svelte";
-  import Login from "../../pages/login/login.svelte";
   import { Router, Route, Link } from "svelte-navigator";
   import PrivateRoute from "../login/privateRoute.svelte";
   import { user } from "../../../global/global.js";
+
 
   function handleLogout() {
     $user = null;
@@ -19,15 +17,16 @@
   <div class="side-bar">
     <a href="/"><i class="fa fa-home">Logo</i></a>
     <Link to="/profile"><a href="/">Your profile</a></Link>
+    <Link to="/newPost"><a href="/">Add Post</a></Link>
     <a href="/">Saved Posts</a>
+
     <button on:click={handleLogout}>Logout</button>
   </div>
 </Router>
 
 <style>
   .side-bar {
-    width: 10%; /* Set a specific width */
-    background-color: #031927; /* Dark-grey background */
+    background-color: #031927; 
     width: 16.65%;
     top: 0;
     bottom: 0;
@@ -36,30 +35,30 @@
 
   .side-bar a {
     height: 33.5px;
-    display: block; /* Make the links appear below each other instead of side-by-side */
-    text-align: center; /* Center-align text */
-    padding: 16px; /* Add some padding */
-    transition: all 0.3s ease; /* Add transition for hover effects */
-    color: white; /* White text color */
-    font-size: 20px; /* Increased font-size */
+    display: block; 
+    text-align: center; 
+    padding: 16px; 
+    transition: all 0.3s ease; 
+    color: white; 
+    font-size: 20px; 
   }
 
   .side-bar button {
-    padding: 16px; /* Add some padding */
-    transition: all 0.3s ease; /* Add transition for hover effects */
-    color: white; /* White text color */
-    font-size: 20px; /* Increased font-size */
+    padding: 16px; 
+    transition: all 0.3s ease; 
+    color: white; 
+    font-size: 20px; 
     width: 100%;
     height: auto;
     background-color: #031927;
     border: none;
   }
   .side-bar button:hover {
-    background-color: #800000; /* Add a hover color */
+    background-color: #800000; 
     cursor: pointer;
   }
 
   .side-bar a:hover {
-    background-color: #508aa8; /* Add a hover color */
+    background-color: #508aa8;
   }
 </style>

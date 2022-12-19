@@ -1,13 +1,24 @@
 <script>
     import Event from "../../components/event/event.svelte";
+    import AddButton from "../../components/addPost/addButton.svelte";
 </script>
 
 <body>
-    <h1 class="trend">Stories most recently told</h1>
-    <Event />
+    <div class="content">
+        <h1 class="trend">Stories most recently told</h1>
+        <AddButton />
+        <Event />
+    </div>
 </body>
 
 <style>
+    body {
+        margin: auto;
+        width: 66.7%;
+    }
+    .content {
+        border: solid 2px;
+    }
     .trend {
         margin: 0 auto;
         width: 40%;
