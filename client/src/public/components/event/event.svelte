@@ -20,7 +20,6 @@
         src="https://kit.fontawesome.com/1a9ff76d50.js"
         crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="/fonts/fontawesome-free-5.3.1-web/css/all.css">
 </head>
 {#each posts as post}
     <div class="content">
