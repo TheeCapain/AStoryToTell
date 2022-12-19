@@ -1,10 +1,11 @@
 <script>
     import { user } from "../../../global/global";
+    import { Router, Route, Link } from "svelte-navigator";
 </script>
 
 <div class="content">
     <div class="knap">
-        <button>+ New Post</button>
+        <Link to="/newPost"><button>+ New Post</button></Link>
     </div>
 </div>
 

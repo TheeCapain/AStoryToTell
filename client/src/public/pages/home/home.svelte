@@ -14,7 +14,6 @@
 <style>
     body {
         margin: auto;
-        width: 66.7%;
     }
     .content {
         border: solid 2px;

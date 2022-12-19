@@ -23,11 +23,11 @@
     </nav>
 
     <main>
-      <Route path="login">
-        <Login />
-      </Route>
       <Route path="/home">
         <Home />
+      </Route>
+      <Route path="login">
+        <Login />
       </Route>
       <Route path="/newPost">
         <NewPost />

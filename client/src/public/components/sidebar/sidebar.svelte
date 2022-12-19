@@ -15,7 +15,7 @@
 />
 <Router>
   <div class="side-bar">
-    <a href="/"><i class="fa fa-home">Logo</i></a>
+    <Link to="/home"><a href="/"><i class="fa fa-home">Logo</i></a></Link>
     <Link to="/profile"><a href="/">Your profile</a></Link>
     <Link to="/newPost"><a href="/">Add Post</a></Link>
     <a href="/">Saved Posts</a>

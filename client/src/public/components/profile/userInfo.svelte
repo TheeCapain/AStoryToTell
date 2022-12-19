@@ -1,6 +1,7 @@
 <script>
     import App from "../../../App.svelte";
     import { user } from "./../../../global/global.js";
+    import { Router, Route, Link } from "svelte-navigator";
 </script>
 
 <div class="user_info">
@@ -25,7 +26,7 @@
             <p>Lorem ipsum text</p>
         </div>
         <div class="knap">
-            <button>+ New Post</button>
+            <Link to="/newPost"><button>+ New Post</button></Link>
         </div>
     </div>
     <div class="stats">
@@ -64,7 +65,7 @@
         margin: 25px 50px;
         border-radius: 100px;
         border: 1px solid black;
-        content:url(userpic.png);
+        content: url(userpic.png);
     }
 
     .antal_opslag,

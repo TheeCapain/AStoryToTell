@@ -6,7 +6,7 @@
 
     async function fetchMovies() {
         let response = await fetch(
-            "https://api.themoviedb.org/3/trending/all/day?api_key=4a86f1670d0ac4ac719f017669984e10"
+            "https://api.themoviedb.org/3/trending/all/week?api_key=4a86f1670d0ac4ac719f017669984e10"
         ).then((response) => response.json());
         posts = await response.results;
         console.log(posts);
@@ -15,6 +15,13 @@
     //https://api.themoviedb.org/3/list/1?api_key=4a86f1670d0ac4ac719f017669984e10 A movie list of marvel movies
 </script>
 
+<head>
+    <script
+        src="https://kit.fontawesome.com/1a9ff76d50.js"
+        crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="/fonts/fontawesome-free-5.3.1-web/css/all.css">
+</head>
 {#each posts as post}
     <div class="content">
         <div class="user">
@@ -36,6 +43,9 @@
             <p>
                 {post.overview}
             </p>
+        </div>
+        <div class="user-interaction">
+            <i class="fa fa-heart" />
         </div>
     </div>
 {/each}
@@ -64,5 +74,9 @@
     .image {
         width: 100%;
         background-color: green;
+    }
+
+    .user-interaction i{
+        width: 50px;
     }
 </style>
