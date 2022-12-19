@@ -1,8 +1,5 @@
 <script>
     let posts = [];
-    let headline;
-    let description;
-    let poster;
 
     async function fetchMovies() {
         let response = await fetch(

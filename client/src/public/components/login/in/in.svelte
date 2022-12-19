@@ -23,10 +23,11 @@
             body: JSON.stringify(login_user),
         });
         let data = await response.json();
-        let username = data.user
+        let username = data.username
+        let id = data.userid
+        alert(username)
         if (response.ok) {
-            $user = {username};
-            console.log($user);
+            $user = {username, id};
             const from =
                 ($location.state && $location.state.from) || "/profile";
             navigate(from, { replace: true });

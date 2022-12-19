@@ -1,25 +1,38 @@
 <script>
     import { user } from "./../../../global/global.js";
     import { useNavigate, useLocation } from "svelte-navigator";
-    let signup_username;
-    let signup_email;
-    let signup_password;
-    let confirmpw;
+    let post_title;
+    let post_content;
+
+    async function addPost() {
+        const new_post = {
+            userid: $user.id,
+            title: post_title,
+            content: post_content,
+        };
+        alert(new_post)
+        let response = await fetch(`http://localhost:8080/api/posts`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(new_post),
+        });
+        let data = await response.json();
+        alert(data);
+    }
 </script>
 
 <div class="signup">
     <h3>Create a new post</h3>
     <form>
         <p>Title*</p>
-        <input
-            id="title"
-            placeholder="Title"
-        />
+        <input bind:value={post_title} id="title" placeholder="Title" />
         <br />
         <p>Content</p>
-        <textarea name="" id="" cols="30" rows="10"></textarea>
+        <textarea bind:value={post_content} name="" id="" cols="30" rows="10" />
         <br />
-        <button type="button" >Post</button>
+        <button type="button" on:click={addPost}>Post</button>
     </form>
 </div>
 

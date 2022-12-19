@@ -17,7 +17,9 @@ loginRouter.post("/api/login", async (req, res, next) => {
         if (await passwordCompare(req.body.password, user.user_pw)) {
             console.log("Password match")
             console.log(user)
-            res.status(200).send({user: user.user_name});
+            res.status(200).send({username: user.user_name,
+                                  userid: user.user_id
+            });
 
         }
     } else {

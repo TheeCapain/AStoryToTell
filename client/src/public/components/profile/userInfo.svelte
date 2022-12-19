@@ -2,6 +2,24 @@
     import App from "../../../App.svelte";
     import { user } from "./../../../global/global.js";
     import { Router, Route, Link } from "svelte-navigator";
+
+    let postNr;
+    async function countPosts() {
+        let id = {
+            id: $user.id,
+        };
+
+        let postInfo = await fetch(`http://localhost:8080/api/countpost`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(id),
+        });
+        let count = await postInfo.json();
+        postNr = count.postAmount;
+    }
+    countPosts();
 </script>
 
 <div class="user_info">
@@ -32,6 +50,7 @@
     <div class="stats">
         <div class="antal_opslag">
             <h1>Antal opslag</h1>
+            <p>{postNr}</p>
         </div>
         <div class="point">
             <h1>Antal point</h1>
