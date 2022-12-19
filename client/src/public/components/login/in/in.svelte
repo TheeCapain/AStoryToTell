@@ -9,7 +9,6 @@
     let login_password;
 
     async function handleSignIn() {
-
         const login_user = {
             email: login_email,
             password: login_password,
@@ -23,11 +22,10 @@
             body: JSON.stringify(login_user),
         });
         let data = await response.json();
-        let username = data.username
-        let id = data.userid
-        alert(username)
+        let username = data.username;
+        let id = data.userid;
         if (response.ok) {
-            $user = {username, id};
+            $user = { username, id };
             const from =
                 ($location.state && $location.state.from) || "/profile";
             navigate(from, { replace: true });

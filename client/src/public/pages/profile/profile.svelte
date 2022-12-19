@@ -17,7 +17,6 @@
       body: JSON.stringify(id),
     });
     let userPosts = await response.json();
-    alert(userPosts)
     posts = userPosts.posts
   }
 
