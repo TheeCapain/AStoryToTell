@@ -11,15 +11,14 @@ postRouter.get("/api/posts", async (req, res) => {
 })
 
 
-postRouter.get("/api/posts/wid", async (req, res) => {
-    const data = await db.all("SELECT * FROM posts WHERE user_id=?", [2])
+postRouter.post("/api/posts/id", async (req, res) => {
+    console.log("gettin id posts by id " + req.body.id)
+    const data = await db.all("SELECT * FROM posts WHERE user_id=?", [req.body.id])
     console.log(data)
-    console.log(count)
-    res.send({ data })
+    res.send({ posts: data })
 })
 
 postRouter.post("/api/countpost", async (req, res) => {
-    console.log("in counting")
     const count = await db.get("SELECT COUNT(*) AS amount FROM posts WHERE user_id =?", [req.body.id])   
     res.send({ postAmount: count.amount })
 })
