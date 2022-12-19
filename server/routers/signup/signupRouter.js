@@ -5,8 +5,6 @@ import { handleEmail } from '../mail/mailRouter.js';
 
 const signupRouter = Router();
 
-
-
 signupRouter.post("/api/signup", async (req, res, next) => {
     console.log("We are in backend")
     const user = await db.run("SELECT * FROM users WHERE user_mail=?", [req.body.email])

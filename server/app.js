@@ -5,7 +5,7 @@ dotenv.config()
 
 const app = express();
 app.use(express.json());
-//CORS
+//CORS LÆS OP PÅ HVAD DET HELT PRÆCIST ER
 import cors from "cors";
 app.use(cors());
 //USER ROUTER
@@ -17,15 +17,20 @@ app.use(signupRouter)
 //LOGIN ROUTER
 import loginRouter from './routers/login/loginRouter.js'
 app.use(loginRouter)
+//MAIL ROUTER
 import mailRouter from "./routers/mail/mailRouter.js";
 app.use(mailRouter)
+//POSTROUTER
+import postRouter from "./routers/post/postRouter.js";
+app.use(postRouter)
+
 
 app.use(express.json());
 
-app.get("/",(res, req)=>{
-    res.send({message: "Hello world"})
+app.get("/", (res, req) => {
+    res.send({ message: "Hello world" })
 })
 
 const PORT = process.env.PORT || 8080
 
-app.listen(PORT, ()=> console.log("Server running on port", PORT))
+app.listen(PORT, () => console.log("Server running on port", PORT))
