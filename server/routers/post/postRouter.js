@@ -7,7 +7,6 @@ const postRouter = new Router()
 postRouter.get("/api/posts", async (req, res) => {
     const data = await db.all("SELECT * FROM posts;");
     console.log(data)
-    console.log("Hej")
     res.send({ data });
 })
 

@@ -1,10 +1,11 @@
 <script>
+    import App from "../../../App.svelte";
     import { user } from "./../../../global/global.js";
 </script>
 
 <div class="user_info">
     <div class="user_picture">
-        <img src="../" alt="" />
+        <img alt="" />
     </div>
     <div class="info">
         <div class="user_name">
@@ -63,6 +64,7 @@
         margin: 25px 50px;
         border-radius: 100px;
         border: 1px solid black;
+        content:url(userpic.png);
     }
 
     .antal_opslag,

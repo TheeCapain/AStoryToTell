@@ -36,8 +36,8 @@ export async function handleEmail(userEmail) {
 
   let info = await transporter.sendMail({
     from: '"A Story To Tell Confirmation" <AStoryToTell.confirmation@gmail.com>',
-    to: userEmail,// usermail skal sættes ind her
-    subject: "Welcome to the Weather",
+    to: userEmail,
+    subject: "Welcome to A Story to tell",
     text: "Account created successfully",
     html: `
         <head>

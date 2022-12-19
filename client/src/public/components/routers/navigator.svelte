@@ -2,7 +2,6 @@
   import { Router, Route, Link } from "svelte-navigator";
   import Home from "../../pages/home/home.svelte";
   import Profile from "../../pages/profile/profile.svelte";
-  import { user } from "./../../../global/global.js";
   import Login from "../../pages/login/login.svelte";
   import PrivateRoute from "../login/privateRoute.svelte";
 
@@ -15,7 +14,7 @@
 <div class="icon-bar">
   <Router>
     <nav id="icon-bar">
-      <Link to="/home"><a href="/"><i class="fa fa-home">Logo</i></a></Link>
+      <Link to="/home">  <a href="/"><i class="fa fa-home">Logo</i></a></Link>
       <Link to="/home"><a href="/"><i class="fa fa-home" /></a></Link>
       <Link to="/filmmaking"><a href="/"><i class="fa fa-camera" /></a></Link>
       <Link to="/bookWriting"><a href="/"><i class="fa fa-book" /></a></Link>
