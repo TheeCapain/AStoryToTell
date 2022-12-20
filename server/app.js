@@ -23,8 +23,8 @@ app.use(mailRouter)
 //POSTROUTER
 import postRouter from "./routers/post/postRouter.js";
 app.use(postRouter)
-
-
+import commentRouter from "./routers/comment/commentRouters.js";
+app.use(commentRouter)
 app.use(express.json());
 
 app.get("/", (res, req) => {

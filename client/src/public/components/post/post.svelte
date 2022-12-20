@@ -4,6 +4,7 @@
     export let headline;
     export let content;
     export let backdrop;
+    export let comment;
 </script>
 
 <div class="content">
@@ -11,7 +12,9 @@
         {#if userphoto !== ""}
             <img class="user_photo" src={userphoto} alt="" />
         {/if}
+  
         {#if username !== ""}
+        <br>
             <a href="/profile"><p>{username}</p></a>
         {/if}
     </div>
@@ -29,6 +32,8 @@
             {content}
         </p>
     </div>
+
+    <div class="comment">{comment}</div>
 </div>
 
 <style>

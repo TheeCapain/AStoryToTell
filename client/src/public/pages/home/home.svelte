@@ -22,6 +22,7 @@
                     headline={post.name}
                     content={post.overview}
                     backdrop={post.backdrop_path}
+                    comment={""}
                 />
             {:else}
                 <Post
@@ -30,6 +31,7 @@
                     headline={post.title}
                     content={post.overview}
                     backdrop={post.backdrop_path}
+                    comment={""}
                 />
             {/if}
         {/each}

@@ -8,6 +8,7 @@
         allPosts = await response.posts;
     }
 
+
     getPosts();
 </script>
 
@@ -21,6 +22,7 @@
                 headline={post.post_title}
                 content={post.post_content}
                 backdrop={""}
+                comment={post.comment_content}
             />
         {/each}
     </div>
