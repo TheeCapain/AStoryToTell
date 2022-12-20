@@ -1,5 +1,5 @@
 <script>
-    import { user } from "./../../../global/global.js";
+    import { user } from "../../../../global/global.js";
     import { useNavigate, useLocation } from "svelte-navigator";
 
     const navigate = useNavigate();
@@ -28,15 +28,8 @@
                 body: JSON.stringify(signup_user),
             });
 
-            let username = signup_user.username
-
             if (response.ok) {
-                $user = { username };
-                alert(signup_username);
-                const from =
-                    ($location.state && $location.state.from) || "/profile";
-                navigate(from, { replace: true });
-                alert("Response is good" + response);
+                window.location.reload()
             }
         }
     }

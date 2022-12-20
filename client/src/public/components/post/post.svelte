@@ -1,6 +1,4 @@
 <script>
-    import { user } from "../../../global/global";
-
     export let userphoto;
     export let username;
     export let headline;

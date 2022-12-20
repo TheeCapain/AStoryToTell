@@ -3,23 +3,22 @@ import db from '../../database/connection_sqlite.js'
 
 const postRouter = new Router()
 
+postRouter.get("/api/post/test", async (req, res) => {
+    const data = await db.all("SELECT * FROM posts INNER JOIN users ON posts.user_id=users.user_id;");
+    res.send({ posts: data });
+})
 
 postRouter.get("/api/posts", async (req, res) => {
     const data = await db.all("SELECT * FROM posts INNER JOIN users ON posts.user_id=users.user_id;");
     res.send({ posts: data });
 })
 
-postRouter.get("/api/test", async (req, res) => {
-    const data = await db.all("SELECT * FROM posts INNER JOIN users ON posts.user_id=users.user_id;");
-    res.send({ posts: data });
-})
-
-
 postRouter.post("/api/posts/id", async (req, res) => {
-    const data = await db.all("SELECT * FROM posts WHERE user_id=?", [req.body.id])
+    console.log(req.body.id)
+    const data = await db.all("SELECT * FROM posts where user_id =?;", [req.body.id])
     res.send({ posts: data })
 })
-
+//Kan denne sættes sammen med ID kaldet for atminimere kald til DB?
 postRouter.post("/api/countpost", async (req, res) => {
     const count = await db.get("SELECT COUNT(*) AS amount FROM posts WHERE user_id =?", [req.body.id])
     res.send({ postAmount: count.amount })

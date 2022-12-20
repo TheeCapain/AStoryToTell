@@ -13,6 +13,7 @@ if (isInDeleteMode) {
     db.exec(`
         DROP TABLE IF EXISTS users;
         DROP TABLE IF EXISTS posts;
+        DROP TABLE IF EXISTS comments
     `);
 }
 
@@ -26,17 +27,19 @@ db.exec(`CREATE TABLE IF NOT EXISTS users (
 
 db.exec(`CREATE TABLE IF NOT EXISTS posts (
     post_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id int FOREGIN KEY REFERENCES users(user_id),
+    user_id int FOREIGN KEY REFERENCES users(user_id),
+    post_category VARCHAR(255)
     post_title VARCHAR(255),
     post_content VARCHAR(255)
     )`)
-/*
 
-post_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    post_title VARCHAR(255),
-    post_content VARCHAR(255),
-    user_id INT FOREIGN KEY REFERENCES users(user_id)
-*/
+db.exec(`CREATE TABLE IF NOT EXISTS comments (
+    comment_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id int FOREIGN KEY REFERENCES users(user_id)
+    post_id int FOREIGN KEY REFERENCES posts(post_id)
+    comment_content VARCHAR(255)
+)`)
+
 if (isInDeleteMode) {
     db.run(`INSERT INTO users
     ( user_name ,user_mail, user_pw) 
@@ -44,7 +47,7 @@ if (isInDeleteMode) {
     ("TestUser","test@mail.com", "123");`);
 
     db.run(`INSERT INTO posts
-    (user_id, post_title, post_content)
+    (user_id, post_category, post_title, post_content)
     VALUES
-    (1, "This is the post title", "This is some not very long post content");`);
+    (1, filmmaking, "This is the post title", "This is some not very long post content");`);
 }

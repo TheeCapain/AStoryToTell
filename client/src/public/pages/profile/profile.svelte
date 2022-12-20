@@ -17,21 +17,22 @@
       body: JSON.stringify(id),
     });
     let userPosts = await response.json();
-    posts = userPosts.posts
+    posts = userPosts.posts;
   }
-
-  getPosts()
+let name =$user.username
+  getPosts();
 </script>
 
 <UserInfo />
 <h1 class="trend">Your contributions</h1>
 {#each posts as post}
-    <Post
-      headline={post.post_title }
-      content={post.post_content}
-      backdrop={""}
-    />
-
+  <Post
+    userphoto={undefined}
+    username={$user.username}
+    headline={post.post_title}
+    content={post.post_content}
+    backdrop={""}
+  />
 {/each}
 
 <style>
