@@ -5,8 +5,13 @@ const postRouter = new Router()
 
 
 postRouter.get("/api/posts", async (req, res) => {
-    const data = await db.all("SELECT * FROM posts;");
-    res.send({ data });
+    const data = await db.all("SELECT * FROM posts INNER JOIN users ON posts.user_id=users.user_id;");
+    res.send({ posts: data });
+})
+
+postRouter.get("/api/test", async (req, res) => {
+    const data = await db.all("SELECT * FROM posts INNER JOIN users ON posts.user_id=users.user_id;");
+    res.send({ posts: data });
 })
 
 

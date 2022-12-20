@@ -8,4 +8,8 @@ userRouter.get("/api/users", async (req, res) => {
     res.send({ data });
 })
 
+userRouter.get("/api/users/id", async(req,res)=>{
+    
+})
+
 export default userRouter;
