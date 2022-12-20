@@ -32,6 +32,7 @@ let name =$user.username
     headline={post.post_title}
     content={post.post_content}
     backdrop={""}
+    comment={post.comment}
   />
 {/each}
 

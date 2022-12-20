@@ -1,4 +1,5 @@
 <script>
+    import { user } from "../../../global/global";
     export let userphoto;
     export let username;
     export let headline;
@@ -12,9 +13,9 @@
         {#if userphoto !== ""}
             <img class="user_photo" src={userphoto} alt="" />
         {/if}
-  
+
         {#if username !== ""}
-        <br>
+            <br />
             <a href="/profile"><p>{username}</p></a>
         {/if}
     </div>
@@ -33,7 +34,30 @@
         </p>
     </div>
 
-    <div class="comment">{comment}</div>
+  
+
+    <div class="post-comments">
+        <div class="comment-user">
+            {#if userphoto !== ""}
+                <img class="user_photo" src={userphoto} alt="" />
+            {/if}
+
+            {#if username !== ""}
+                <a href="/profile"><p>{username}</p></a>
+            {/if}
+        </div>
+        <div class="comment">{comment}</div>
+    </div>
+    {#if $user}
+    <div class="commentfield">
+        {#if userphoto !== ""}
+            <img class="user_photo" src={userphoto} alt="" />
+        {/if}
+        <input type="text" />
+
+        <button>comment</button>
+    </div>
+{/if}
 </div>
 
 <style>
@@ -54,6 +78,33 @@
         border-radius: 5px;
         box-shadow: -1px 2px 15px -1px rgba(0, 0, 0, 0.46);
         -webkit-box-shadow: -1px 2px 8px -1px rgba(0, 0, 0, 0.35);
+    }
+    .commentfield {
+        height: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: -1px 2px 15px -1px rgba(0, 0, 0, 0.46);
+        background-color: lightgray;
+    }
+
+    .commentfield input {
+       margin: auto auto;
+       width: 75%;
+       background-color: white;
+    }
+    .commentfield button {
+       margin: auto auto;
+    }
+    .post-comments {
+        height: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: -1px 2px 15px -1px rgba(0, 0, 0, 0.46);
+        background-color: gray;
+    }
+
+    .comment-user {
+        display: inline-flex;
     }
 
     .image {
