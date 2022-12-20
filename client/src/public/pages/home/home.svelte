@@ -1,5 +1,5 @@
 <script>
-    import Event from "../../components/event/event.svelte";
+    import Post from "../../components/post/post.svelte";
     import AddButton from "../../components/addPost/addButton.svelte";
     let posts = [];
     async function fetchMovies() {
@@ -14,16 +14,19 @@
 <body>
     <div class="content">
         <h1 class="trend">Stories most recently told</h1>
-        <AddButton />
         {#each posts as post}
             {#if post.name !== undefined}
-                <Event
+                <Post
+                    userphoto={""}
+                    username={""}
                     headline={post.name}
                     content={post.overview}
                     backdrop={post.backdrop_path}
                 />
             {:else}
-                <Event
+                <Post
+                    userphoto={""}
+                    username={""}
                     headline={post.title}
                     content={post.overview}
                     backdrop={post.backdrop_path}

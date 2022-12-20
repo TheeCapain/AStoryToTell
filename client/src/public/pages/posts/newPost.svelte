@@ -1,5 +1,5 @@
 <script>
-    import AddForm from "../../components/addPost/addForm.svelte";
+    import AddForm from "../../components/addPost/addPost.svelte";
 </script>
 
 <AddForm/>

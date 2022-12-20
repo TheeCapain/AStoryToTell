@@ -1,6 +1,6 @@
 <script>
   import UserInfo from "../../components/profile/userInfo.svelte";
-  import Event from "../../components/event/event.svelte";
+  import Post from "../../components/post/post.svelte";
   import { user } from "../../../global/global";
   let posts = [];
 
@@ -26,7 +26,7 @@
 <UserInfo />
 <h1 class="trend">Your contributions</h1>
 {#each posts as post}
-    <Event
+    <Post
       headline={post.post_title }
       content={post.post_content}
       backdrop={""}

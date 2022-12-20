@@ -1,6 +1,5 @@
 <script>
-  import { Router, Route, Link } from "svelte-navigator";
-  import PrivateRoute from "../login/privateRoute.svelte";
+  import { Router, Link } from "svelte-navigator";
   import { user } from "../../../global/global.js";
 
 

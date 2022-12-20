@@ -1,7 +1,6 @@
 <script>
-    import App from "../../../App.svelte";
     import { user } from "./../../../global/global.js";
-    import { Router, Route, Link } from "svelte-navigator";
+    import { Link } from "svelte-navigator";
 
     let postNr;
     async function countPosts() {

@@ -1,5 +1,5 @@
 <script>
-    import { user } from "./../../../global/global.js";
+    import { user } from "../../../global/global.js";
     import { useNavigate, useLocation } from "svelte-navigator";
     let post_title;
     let post_content;

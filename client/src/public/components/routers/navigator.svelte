@@ -5,6 +5,7 @@
   import Login from "../../pages/login/login.svelte";
   import PrivateRoute from "../login/privateRoute.svelte";
   import NewPost from "../../pages/posts/newPost.svelte";
+  import Filmmaking from "../../pages/filmmaking/filmmaking.svelte";
 </script>
 
 <link
@@ -32,7 +33,9 @@
       <Route path="/newPost">
         <NewPost />
       </Route>
-      <Route path="/filmmaking" />
+      <Route path="/filmmaking">
+        <Filmmaking/>
+      </Route>
       <Route path="/bookwriting" />
       <Route path="/music" />
       <PrivateRoute path="/profile" let:location>
