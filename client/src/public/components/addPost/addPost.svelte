@@ -1,6 +1,5 @@
 <script>
     import { user } from "../../../global/global.js";
-    import { useNavigate, useLocation } from "svelte-navigator";
     let post_title;
     let post_content;
 
@@ -10,7 +9,6 @@
             title: post_title,
             content: post_content,
         };
-        alert(new_post)
         let response = await fetch(`http://localhost:8080/api/posts`, {
             method: "POST",
             headers: {
@@ -18,8 +16,7 @@
             },
             body: JSON.stringify(new_post),
         });
-        let data = await response.json();
-        alert(data);
+        //Skal laves logik for at ændre siden
     }
 </script>
 

@@ -1,6 +1,7 @@
 <script>
     import { user } from "../../../global/global";
     import Comment from "../comments/comment.svelte";
+    import AddComment from "../comments/addComment.svelte";
     export let postId;
     export let userphoto;
     export let username;
@@ -15,7 +16,7 @@
             id: postId,
         };
 
-        let response = await fetch(`http://localhost:8080/api/comments`, {
+        let response = await fetch(`http://localhost:8080/api/comments/id`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",
@@ -65,15 +66,7 @@
         />
     {/each}
     {#if $user}
-        <div class="commentfield">
-            {#if userphoto !== ""}
-                <img class="user_photo" src={userphoto} alt="" />
-            {/if}
-
-            <input type="text" placeholder="Share your thoughts"/>
-
-            <button>comment</button>
-        </div>
+        <AddComment post_Id= {postId}/>
     {/if}
 </div>
 
@@ -88,20 +81,6 @@
         border: 1px solid black;
     }
 
-    .commentfield input {
-        margin: auto auto;
-        width: 75%;
-        background-color: white;
-    }
-    .commentfield button {
-        margin: auto auto;
-    }
-    .commentfield {
-        border-radius: 5px;
-        box-shadow: -1px 2px 15px -1px rgba(0, 0, 0, 0.46);
-        background-color: lightgray;
-        display: flex;
-    }
     .content {
         margin: 1% auto;
         width: 40%;
