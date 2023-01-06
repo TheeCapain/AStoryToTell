@@ -4,16 +4,14 @@ import db from '../../database/connection_sqlite.js'
 const postRouter = new Router()
 
 postRouter.get("/api/post/test", async (req, res) => {
-    const data = await db.all(`SELECT * FROM posts
-    INNER JOIN users ON users.user_id = posts.fk_user_id
-    LEFT JOIN comments`);
+    const data = await db.all(`SELECT  * FROM posts
+    INNER JOIN users ON users.user_id = posts.fk_user_id`);
     res.send({ posts: data });
 })
 
 postRouter.get("/api/posts", async (req, res) => {
-    const data = await db.all(`SELECT * FROM posts
-    INNER JOIN users ON users.user_id = posts.fk_user_id
-    LEFT JOIN comments ON comments.fk_user_id = posts.fk_user_id`);
+    const data = await db.all(`SELECT  * FROM posts
+    INNER JOIN users ON users.user_id = posts.fk_user_id`);
     res.send({ posts: data });
 })
 

@@ -30,7 +30,7 @@
         <input bind:value={post_title} id="title" placeholder="Title" />
         <br />
         <p>Content</p>
-        <textarea bind:value={post_content} name="" id="" cols="30" rows="10" />
+        <textarea bind:value={post_content} name="" id="" cols="80" rows="10" />
         <br />
         <button type="button" on:click={addPost}>Post</button>
     </form>

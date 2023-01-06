@@ -17,21 +17,21 @@
         {#each posts as post}
             {#if post.name !== undefined}
                 <Post
+                    postId={post.id}
                     userphoto={""}
                     username={""}
                     headline={post.name}
                     content={post.overview}
                     backdrop={post.backdrop_path}
-                    comment={""}
                 />
             {:else}
                 <Post
+                    postId={post.id}
                     userphoto={""}
                     username={""}
                     headline={post.title}
                     content={post.overview}
                     backdrop={post.backdrop_path}
-                    comment={""}
                 />
             {/if}
         {/each}

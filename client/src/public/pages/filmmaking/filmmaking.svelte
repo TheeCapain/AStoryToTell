@@ -1,4 +1,6 @@
 <script>
+    import { each } from "svelte/internal";
+    import Comment from "../../components/comments/comment.svelte";
     import Post from "../../components/post/post.svelte";
     let allPosts = [];
     async function getPosts() {
@@ -8,7 +10,6 @@
         allPosts = await response.posts;
     }
 
-
     getPosts();
 </script>
 
@@ -17,12 +18,12 @@
         <h1 class="trend">Share your camera struggles and inquiries</h1>
         {#each allPosts as post}
             <Post
+                postId={post.post_id}
                 userphoto={undefined}
                 username={post.user_name}
                 headline={post.post_title}
                 content={post.post_content}
                 backdrop={""}
-                comment={post.comment_content}
             />
         {/each}
     </div>

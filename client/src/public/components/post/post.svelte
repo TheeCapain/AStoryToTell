@@ -1,11 +1,33 @@
 <script>
     import { user } from "../../../global/global";
+    import Comment from "../comments/comment.svelte";
+    export let postId;
     export let userphoto;
     export let username;
     export let headline;
     export let content;
     export let backdrop;
-    export let comment;
+    let allComments = [];
+
+    //Skal være POST og sende postID med ned for at hente commentarer
+    async function getComments() {
+        const post = {
+            id: postId,
+        };
+
+        let response = await fetch(`http://localhost:8080/api/comments`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(post),
+        }).then((response) => response.json());
+
+        allComments = await response.comments;
+        console.log(allComments);
+    }
+
+    getComments();
 </script>
 
 <div class="content">
@@ -20,6 +42,7 @@
         {/if}
     </div>
     <h1 class="headline">{headline}</h1>
+    <p>post id: {postId}</p>
     {#if backdrop !== ""}
         <img
             class="image"
@@ -34,30 +57,24 @@
         </p>
     </div>
 
-  
-
-    <div class="post-comments">
-        <div class="comment-user">
+    {#each allComments as comment}
+        <Comment
+            userphoto={undefined}
+            username={comment.user_name}
+            comment={comment.comment_content}
+        />
+    {/each}
+    {#if $user}
+        <div class="commentfield">
             {#if userphoto !== ""}
                 <img class="user_photo" src={userphoto} alt="" />
             {/if}
 
-            {#if username !== ""}
-                <a href="/profile"><p>{username}</p></a>
-            {/if}
-        </div>
-        <div class="comment">{comment}</div>
-    </div>
-    {#if $user}
-    <div class="commentfield">
-        {#if userphoto !== ""}
-            <img class="user_photo" src={userphoto} alt="" />
-        {/if}
-        <input type="text" />
+            <input type="text" placeholder="Share your thoughts"/>
 
-        <button>comment</button>
-    </div>
-{/if}
+            <button>comment</button>
+        </div>
+    {/if}
 </div>
 
 <style>
@@ -70,6 +87,21 @@
         border-radius: 100px;
         border: 1px solid black;
     }
+
+    .commentfield input {
+        margin: auto auto;
+        width: 75%;
+        background-color: white;
+    }
+    .commentfield button {
+        margin: auto auto;
+    }
+    .commentfield {
+        border-radius: 5px;
+        box-shadow: -1px 2px 15px -1px rgba(0, 0, 0, 0.46);
+        background-color: lightgray;
+        display: flex;
+    }
     .content {
         margin: 1% auto;
         width: 40%;
@@ -78,33 +110,6 @@
         border-radius: 5px;
         box-shadow: -1px 2px 15px -1px rgba(0, 0, 0, 0.46);
         -webkit-box-shadow: -1px 2px 8px -1px rgba(0, 0, 0, 0.35);
-    }
-    .commentfield {
-        height: 100%;
-        padding: 10px;
-        border-radius: 5px;
-        box-shadow: -1px 2px 15px -1px rgba(0, 0, 0, 0.46);
-        background-color: lightgray;
-    }
-
-    .commentfield input {
-       margin: auto auto;
-       width: 75%;
-       background-color: white;
-    }
-    .commentfield button {
-       margin: auto auto;
-    }
-    .post-comments {
-        height: 100%;
-        padding: 10px;
-        border-radius: 5px;
-        box-shadow: -1px 2px 15px -1px rgba(0, 0, 0, 0.46);
-        background-color: gray;
-    }
-
-    .comment-user {
-        display: inline-flex;
     }
 
     .image {

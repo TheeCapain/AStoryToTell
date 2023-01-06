@@ -19,7 +19,6 @@
     let userPosts = await response.json();
     posts = userPosts.posts;
   }
-let name =$user.username
   getPosts();
 </script>
 
@@ -27,12 +26,12 @@ let name =$user.username
 <h1 class="trend">Your contributions</h1>
 {#each posts as post}
   <Post
+    postId={post.id}
     userphoto={undefined}
     username={$user.username}
     headline={post.post_title}
     content={post.post_content}
     backdrop={""}
-    comment={post.comment}
   />
 {/each}
 
