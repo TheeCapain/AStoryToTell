@@ -1,6 +1,4 @@
 <script>
-    import { each } from "svelte/internal";
-    import Comment from "../../components/comments/comment.svelte";
     import Post from "../../components/post/post.svelte";
     let allPosts = [];
     async function getPosts() {

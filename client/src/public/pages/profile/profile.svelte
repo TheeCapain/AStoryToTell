@@ -26,7 +26,7 @@
 <h1 class="trend">Your contributions</h1>
 {#each posts as post}
   <Post
-    postId={post.id}
+    postId={post.post_id}
     userphoto={undefined}
     username={$user.username}
     headline={post.post_title}

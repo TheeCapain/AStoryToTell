@@ -1,4 +1,4 @@
-import {Router} from 'express';
+import { Router } from 'express';
 import db from '../../database/connection_sqlite.js'
 
 const userRouter = Router();
@@ -8,8 +8,10 @@ userRouter.get("/api/users", async (req, res) => {
     res.send({ data });
 })
 
-userRouter.get("/api/users/id", async(req,res)=>{
-    
+userRouter.post("/api/users/id", async (req, res) => {
+    console.log(req.body)
+    const data = await db.all(`SELECT * FROM users where user_id=?`, [req.body.id])
+    res.send({ info: data });
 })
 
 export default userRouter;

@@ -3,6 +3,9 @@
     import { Link } from "svelte-navigator";
 
     let postNr;
+    let user_mail;
+    let user_bio;
+    let user_roles;
     async function countPosts() {
         let id = {
             id: $user.id,
@@ -18,6 +21,28 @@
         let count = await postInfo.json();
         postNr = count.postAmount;
     }
+
+    async function userData() {
+        let id = {
+            id: $user.id,
+        };
+
+        let userInfo = await fetch(`http://localhost:8080/api/users/id`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(id),
+        });
+        let info = await userInfo.json();
+        user_mail = info.info[0].user_mail
+        user_bio = info.info[0].user_bio
+        user_roles = info.info[0].user_roles
+        console.log(info)
+        console.log(user_roles)
+
+    }
+    userData();
     countPosts();
 </script>
 
@@ -29,18 +54,15 @@
         <div class="user_name">
             <h1>{$user.username}</h1>
         </div>
-        <div class="address">
-            <p>Adresse</p>
-        </div>
         <div class="mail">
-            <p>Email</p>
+            <p>{user_mail}</p>
         </div>
         <div class="telefon">
             <p>Telefon</p>
         </div>
         <div class="user_bio">
             <h1>User Bio</h1>
-            <p>Lorem ipsum text</p>
+            <p>{user_bio}</p>
         </div>
         <div class="knap">
             <Link to="/newPost"><button>+ New Post</button></Link>
