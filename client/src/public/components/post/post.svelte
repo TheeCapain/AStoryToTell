@@ -9,7 +9,6 @@
     export let content;
     export let backdrop;
     let allComments = [];
-
     //Skal være POST og sende postID med ned for at hente commentarer
     async function getComments() {
         const post = {
@@ -19,7 +18,7 @@
         let response = await fetch(`http://localhost:8080/api/comments/id`, {
             method: "POST",
             headers: {
-                "content-type": "application/json",
+                "content-type": "application/json", 
             },
             body: JSON.stringify(post),
         }).then((response) => response.json());
@@ -28,7 +27,7 @@
         console.log(allComments);
     }
 
-    getComments();
+   getComments()
 </script>
 
 <div class="content">

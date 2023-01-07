@@ -1,5 +1,6 @@
 <script>
     import Post from "../../components/post/post.svelte";
+
     let allPosts = [];
     async function getPosts() {
         let response = await fetch(`http://localhost:8080/api/posts`).then(

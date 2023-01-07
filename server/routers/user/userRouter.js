@@ -9,7 +9,6 @@ userRouter.get("/api/users", async (req, res) => {
 })
 
 userRouter.post("/api/users/id", async (req, res) => {
-    console.log(req.body)
     const data = await db.all(`SELECT * FROM users where user_id=?`, [req.body.id])
     res.send({ info: data });
 })

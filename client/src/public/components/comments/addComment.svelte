@@ -1,8 +1,12 @@
 <script>
-    import { user } from "../../../global/global.js";
+    import { user, commentChanges } from "../../../global/global.js";
     export let post_Id;
     let userphoto;
     let comment_Content;
+    let allComments = [];
+
+    import io from "socket.io-client";
+    const socket = io();
 
     async function addComment() {
         const new_comment = {
@@ -18,6 +22,16 @@
             },
             body: JSON.stringify(new_comment),
         });
+        socket.on("update comments", (data) => {
+            console.log("does this do anything?");
+            allComments = data.data;
+            commentChanges.update((currentCommentsChanges) => {
+                return [data, ...currentCommentsChanges];
+            });
+        });
+        console.log("Emitting underneath");
+
+        socket.emit("client asks for comments", { data: allComments });
     }
 </script>
 
