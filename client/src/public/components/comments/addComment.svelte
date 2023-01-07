@@ -1,12 +1,14 @@
 <script>
     import { user, commentChanges } from "../../../global/global.js";
+    import io from "socket.io-client";
     export let post_Id;
+
     let userphoto;
     let comment_Content;
-    let allComments = [];
-
-    import io from "socket.io-client";
-    const socket = io();
+ 
+    const socket = io("ws://localhost:3000");
+  
+    
 
     async function addComment() {
         const new_comment = {
@@ -14,6 +16,7 @@
             postId: post_Id,
             comment: comment_Content,
         };
+      
 
         let response = await fetch(`http://localhost:8080/api/comments`, {
             method: "POST",
@@ -22,16 +25,8 @@
             },
             body: JSON.stringify(new_comment),
         });
-        socket.on("update comments", (data) => {
-            console.log("does this do anything?");
-            allComments = data.data;
-            commentChanges.update((currentCommentsChanges) => {
-                return [data, ...currentCommentsChanges];
-            });
-        });
-        console.log("Emitting underneath");
 
-        socket.emit("client asks for comments", { data: allComments });
+        socket.emit("get comments", post_Id);
     }
 </script>
 

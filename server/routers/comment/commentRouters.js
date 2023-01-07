@@ -1,25 +1,41 @@
-
+import express from "express";
 import { Router } from 'express';
-
-
+import { Server } from "socket.io"
+import http from "http";
 import db from '../../database/connection_sqlite.js'
+
+
+const app = express();
 const commentRouter = Router();
+const httpServer = http.createServer(app);
 
 
-/*
-io.on("update comments", (socket) => {
-    socket.on("client asks for comments", async (data) => {
-        console.log("In backend sockets")
-        data.comments = await db.all(`SELECT * FROM comments 
+const io = new Server(httpServer, {
+    cors: {
+        origin: "*",
+        methods: ["GET", "POST"],
+    },
+});
+
+io.on("connection", (socket) => {
+    socket.emit("hello", "world");
+});
+
+io.on("connection", (socket) => {
+    socket.on("get comments", async (arg) => {
+        const data = await db.all(`SELECT * FROM comments 
         INNER JOIN users
         ON users.user_id = comments.fk_user_id
-        WHERE fk_post_id=?`, [req.body.id]);
-        console.log("In backend sockets")
-        io.emit("update comments", data)
+        WHERE fk_post_id=?`, [arg]);
+        console.log("Sending comments back");
+        io.emit("send comments", data)
+    });
+});
 
-    })
-})
-*/
+httpServer.listen(3000, () => {
+    console.log(`Example app listening on port ${3000}`);
+});
+
 
 commentRouter.get("/api/comments/test", async (req, res) => {
     const data = await db.all(`SELECT * FROM comments 

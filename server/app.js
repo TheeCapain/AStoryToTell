@@ -9,7 +9,6 @@ const app = express();
 app.use(express.json());
 //læs op på de her sessions
 import session from "express-session"
-
 //CORS LÆS OP PÅ HVAD DET HELT PRÆCIST ER
 import cors from "cors";
 app.use(cors());
@@ -40,33 +39,5 @@ app.get("/", (res, req) => {
 })
 
 const PORT = process.env.PORT || 8080
-
-const httpServer = http.createServer(app);
-const io = new Server(httpServer, {
-    cors: {
-        origin: "*",
-        methods: ["GET", "POST"],
-    },
-});
-
-io.on("connection", (socket) => {
-    socket.emit("hello", "world");
-});
-
-io.on("connection", (socket) => {
-    socket.on("hello", (arg) => {
-        console.log(arg); // world
-    });
-});
-
-io.on("connection", (socket) => {
-    console.log("We are live and connected");
-    console.log(socket.id);
-});
-
-httpServer.listen(3000, () => {
-    console.log(`Example app listening on port ${3000}`);
-});
-
 
 app.listen(PORT, () => console.log("Server running on port", PORT))

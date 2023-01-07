@@ -2,13 +2,24 @@
     import { user } from "../../../global/global";
     import Comment from "../comments/comment.svelte";
     import AddComment from "../comments/addComment.svelte";
+    import io from "socket.io-client";
     export let postId;
     export let userphoto;
     export let username;
     export let headline;
     export let content;
     export let backdrop;
+    const socket = io("ws://localhost:3000");
     let allComments = [];
+
+
+    socket.on("send comments", async (data) => {
+        allComments = await data
+        console.log(allComments)
+    });
+
+    
+
     //Skal være POST og sende postID med ned for at hente commentarer
     async function getComments() {
         const post = {
@@ -24,10 +35,9 @@
         }).then((response) => response.json());
 
         allComments = await response.comments;
-        console.log(allComments);
     }
 
-   getComments()
+    getComments()
 </script>
 
 <div class="content">
