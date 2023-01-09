@@ -1,7 +1,14 @@
 <script>
+    import { socket } from "../../../global/global";
     import Post from "../../components/post/post.svelte";
 
     let allPosts = [];
+/*
+    socket.on("update posts", async (data) => {
+        allPosts = await data;
+        getPosts()
+    });
+*/
     async function getPosts() {
         let response = await fetch(`http://localhost:8080/api/posts`).then(
             (response) => response.json()

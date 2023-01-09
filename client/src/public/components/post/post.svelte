@@ -1,24 +1,23 @@
 <script>
-    import { user } from "../../../global/global";
+    import { user, socket } from "../../../global/global";
     import Comment from "../comments/comment.svelte";
     import AddComment from "../comments/addComment.svelte";
-    import io from "socket.io-client";
+
     export let postId;
     export let userphoto;
     export let username;
     export let headline;
     export let content;
     export let backdrop;
-    const socket = io("ws://localhost:3000");
     let allComments = [];
+    let newComment;
+    let postComments = [];
 
-
-    socket.on("send comments", async (data) => {
-        allComments = await data
-        console.log(allComments)
+    socket.on("update comments", async (data) => {
+        newComment = await data;
+        postComments.push(newComment);
+        getComments();
     });
-
-    
 
     //Skal være POST og sende postID med ned for at hente commentarer
     async function getComments() {
@@ -29,15 +28,14 @@
         let response = await fetch(`http://localhost:8080/api/comments/id`, {
             method: "POST",
             headers: {
-                "content-type": "application/json", 
+                "content-type": "application/json",
             },
             body: JSON.stringify(post),
         }).then((response) => response.json());
 
         allComments = await response.comments;
     }
-
-    getComments()
+    getComments();
 </script>
 
 <div class="content">
@@ -74,8 +72,9 @@
             comment={comment.comment_content}
         />
     {/each}
+
     {#if $user}
-        <AddComment post_Id= {postId}/>
+        <AddComment post_Id={postId} />
     {/if}
 </div>
 

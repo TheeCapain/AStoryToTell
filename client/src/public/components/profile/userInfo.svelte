@@ -38,8 +38,6 @@
         user_mail = info.info[0].user_mail
         user_bio = info.info[0].user_bio
         user_roles = info.info[0].user_roles
-        console.log(info)
-        console.log(user_roles)
 
     }
     userData();

@@ -1,23 +1,17 @@
 <script>
-    import { user, commentChanges } from "../../../global/global.js";
-    import io from "socket.io-client";
+    import { user, socket } from "../../../global/global.js";
     export let post_Id;
-
     let userphoto;
     let comment_Content;
- 
-    const socket = io("ws://localhost:3000");
-  
-    
 
     async function addComment() {
         const new_comment = {
             userId: $user.id,
+            user_name: $user.user_name,
             postId: post_Id,
             comment: comment_Content,
         };
-      
-
+    
         let response = await fetch(`http://localhost:8080/api/comments`, {
             method: "POST",
             headers: {
@@ -25,9 +19,9 @@
             },
             body: JSON.stringify(new_comment),
         });
-
-        socket.emit("get comments", post_Id);
+        socket.emit("getpostcomments", new_comment);
     }
+
 </script>
 
 <div class="commentfield">

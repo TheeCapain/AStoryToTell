@@ -1,6 +1,5 @@
 <script>
     import Post from "../../components/post/post.svelte";
-    import AddButton from "../../components/addPost/addButton.svelte";
     let posts = [];
     async function fetchMovies() {
         let response = await fetch(
