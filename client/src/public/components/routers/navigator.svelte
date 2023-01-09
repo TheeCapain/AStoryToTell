@@ -6,6 +6,7 @@
   import PrivateRoute from "../login/privateRoute.svelte";
   import NewPost from "../../pages/posts/newPost.svelte";
   import Filmmaking from "../../pages/filmmaking/filmmaking.svelte";
+  import Writing from "../../pages/writing/writing.svelte";
 </script>
 
 <link
@@ -34,9 +35,11 @@
         <NewPost />
       </Route>
       <Route path="/filmmaking">
-        <Filmmaking/>
+        <Filmmaking />
       </Route>
-      <Route path="/bookwriting" />
+      <Route path="/bookwriting">
+        <Writing />
+      </Route>
       <Route path="/music" />
       <PrivateRoute path="/profile" let:location>
         <Profile />

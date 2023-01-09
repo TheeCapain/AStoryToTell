@@ -19,7 +19,6 @@
         getComments();
     });
 
-    //Skal være POST og sende postID med ned for at hente commentarer
     async function getComments() {
         const post = {
             id: postId,
@@ -34,7 +33,9 @@
         }).then((response) => response.json());
 
         allComments = await response.comments;
+        console.log(allComments)
     }
+
     getComments();
 </script>
 
@@ -67,6 +68,8 @@
 
     {#each allComments as comment}
         <Comment
+            usersId = {comment.fk_user_id}
+            commentId={comment.comment_id}
             userphoto={undefined}
             username={comment.user_name}
             comment={comment.comment_content}

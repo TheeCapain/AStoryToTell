@@ -3,8 +3,11 @@ import db from '../../database/connection_sqlite.js'
 
 const userRouter = Router();
 
+
+
+
 userRouter.get("/api/users", async (req, res) => {
-    const data = await db.all("SELECT * FROM users;");
+    const data = await db.all("SELECT user_id, user_name, user_mail, user_bio FROM users INNER JOIN comments on comments.fk_user_id = users.user_id;");
     res.send({ data });
 })
 

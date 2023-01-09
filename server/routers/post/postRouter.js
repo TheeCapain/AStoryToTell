@@ -30,19 +30,26 @@ httpServer.listen(3000, () => {
 */
 
 postRouter.get("/api/post/test", async (req, res) => {
-    const data = await db.all(`SELECT  * FROM posts
-    INNER JOIN users ON users.user_id = posts.fk_user_id`);
+    const data = await db.all(`SELECT * FROM posts WHERE post_category = "filmmaking"`);
     res.send({ posts: data });
 });
 
-postRouter.get("/api/posts", async (req, res) => {
-    const data = await db.all(`SELECT  * FROM posts
-    INNER JOIN users ON users.user_id = posts.fk_user_id`);
+postRouter.get("/api/posts/filmmaking", async (req, res) => {
+    const data = await db.all(`SELECT posts.post_id, posts.post_title, posts.post_content, users.user_id, users.user_name FROM posts 
+    INNER JOIN users ON users.user_id = posts.fk_user_id
+    WHERE posts.post_category = "filmmaking"`);
+    res.send({ posts: data });
+});
+
+postRouter.get("/api/posts/writing", async (req, res) => {
+    const data = await db.all(`SELECT posts.post_id, posts.post_title, posts.post_content, users.user_id, users.user_name FROM posts 
+    INNER JOIN users ON users.user_id = posts.fk_user_id
+    WHERE posts.post_category = "writing"`);
     res.send({ posts: data });
 });
 
 postRouter.post("/api/posts/id", async (req, res) => {
-    const data = await db.all("SELECT * FROM posts where fk_user_id =?;", [req.body.id])
+    const data = await db.all("SELECT * FROM posts WHERE fk_user_id =?;", [req.body.id])
     res.send({ posts: data })
 });
 //Kan denne sættes sammen med ID kaldet for atminimere kald til DB?

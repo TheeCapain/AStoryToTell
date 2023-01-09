@@ -8,7 +8,6 @@ const app = express();
 const commentRouter = Router();
 const httpServer = http.createServer(app);
 
-
 const io = new Server(httpServer, {
     cors: {
         origin: "*",
@@ -18,13 +17,6 @@ const io = new Server(httpServer, {
 
 io.on("connection", (socket) => {
     socket.on("getpostcomments", async (arg) => {
-        /*
-                const data = await db.all(`SELECT * FROM comments 
-                INNER JOIN users
-                ON users.user_id = comments.fk_user_id
-                WHERE fk_post_id=?`, [arg]);
-                console.log("Sending comments back");
-                */
         io.emit("update comments", arg)
     });
 });
@@ -32,6 +24,12 @@ io.on("connection", (socket) => {
 httpServer.listen(3000, () => {
     console.log(`Example app listening on port ${3000}`);
 });
+
+commentRouter.delete("/api/comments/delete", async (req, res) => {
+    console.log(req.body.id)
+    await db.run(`DELETE FROM comments WHERE comment_id=?`, [req.body.id])
+    res.send({ message: "Deleted from DB" })
+})
 
 commentRouter.get("/api/comments/test", async (req, res) => {
     const data = await db.all(`SELECT * FROM comments 
@@ -55,7 +53,7 @@ commentRouter.post("/api/comments/id", async (req, res) => {
     res.send({ comments: data });
 })
 
-commentRouter.post("/api/comments", async (req, res) => {
+commentRouter.get("/api/comments", async (req, res) => {
     const data = await db.all("SELECT * FROM comments;");
     res.send({ comments: data });
 })

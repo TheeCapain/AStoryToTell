@@ -19,6 +19,7 @@
             },
             body: JSON.stringify(new_comment),
         });
+        comment_Content = ""
         socket.emit("getpostcomments", new_comment);
     }
 

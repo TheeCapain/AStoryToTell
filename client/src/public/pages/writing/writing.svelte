@@ -3,9 +3,14 @@
     import Post from "../../components/post/post.svelte";
 
     let allPosts = [];
-
+/*
+    socket.on("update posts", async (data) => {
+        allPosts = await data;
+        getPosts()
+    });
+*/
     async function getPosts() {
-        let response = await fetch(`http://localhost:8080/api/posts/filmmaking`).then(
+        let response = await fetch(`http://localhost:8080/api/posts/writing`).then(
             (response) => response.json()
         );
         allPosts = await response.posts;
@@ -16,6 +21,7 @@
 
 <body>
     <div class="content">
+
         {#each allPosts as post}
             <Post
                 postId={post.post_id}
