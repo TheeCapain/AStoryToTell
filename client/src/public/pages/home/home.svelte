@@ -12,7 +12,7 @@
 
 <body>
     <div class="content">
-        <h1 class="trend">Movie News</h1>
+        <h1 class="trend">Social Hub and latest hot topics</h1>
         {#each posts as post}
             {#if post.name !== undefined}
                 <Post
