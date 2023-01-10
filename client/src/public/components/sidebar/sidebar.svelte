@@ -2,7 +2,6 @@
   import { Router, Link } from "svelte-navigator";
   import { user } from "../../../global/global.js";
 
-
   function handleLogout() {
     $user = null;
   }
@@ -17,15 +16,14 @@
     <Link to="/home"><a href="/"><i class="fa fa-home">Logo</i></a></Link>
     <Link to="/profile"><a href="/">Your profile</a></Link>
     <Link to="/newPost"><a href="/">Add Post</a></Link>
-    <a href="/">Saved Posts</a>
-
+    <Link to="/bookmarks"><a href="/">Bookmarked</a></Link>
     <button on:click={handleLogout}>Logout</button>
   </div>
 </Router>
 
 <style>
   .side-bar {
-    background-color: #031927; 
+    background-color: #031927;
     width: 16.65%;
     top: 0;
     bottom: 0;
@@ -34,26 +32,26 @@
 
   .side-bar a {
     height: 33.5px;
-    display: block; 
-    text-align: center; 
-    padding: 16px; 
-    transition: all 0.3s ease; 
-    color: white; 
-    font-size: 20px; 
+    display: block;
+    text-align: center;
+    padding: 16px;
+    transition: all 0.3s ease;
+    color: white;
+    font-size: 20px;
   }
 
   .side-bar button {
-    padding: 16px; 
-    transition: all 0.3s ease; 
-    color: white; 
-    font-size: 20px; 
+    padding: 16px;
+    transition: all 0.3s ease;
+    color: white;
+    font-size: 20px;
     width: 100%;
     height: auto;
     background-color: #031927;
     border: none;
   }
   .side-bar button:hover {
-    background-color: #800000; 
+    background-color: #800000;
     cursor: pointer;
   }
 

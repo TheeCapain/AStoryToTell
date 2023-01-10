@@ -8,9 +8,11 @@ bookmarkRouter.get("/api/bookmarks", async (req, res) => {
     res.send({ bookmarks });
 })
 
-bookmarkRouter.post("/api/bookmarks", async (req, res) => {
-    const bookmarks = await db.all(`SELECT * FROM bookmarks WHERE bookmarks.fk_user_id = 1
-    INNER JOIN `);
+bookmarkRouter.get("/api/bookmarks/id", async (req, res) => {
+    const bookmarks = await db.all(`SELECT * FROM bookmarks 
+    INNER JOIN posts
+    ON posts.post_id = bookmarks.fk_post_id
+    WHERE bookmarks.fk_user_id = 1 `);
     res.send({ bookmarks });
 })
 
