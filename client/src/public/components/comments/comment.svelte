@@ -2,8 +2,8 @@
     import { user, socket } from "../../../global/global";
     export let userphoto;
     export let username;
-    export let usersId;
     export let comment;
+    export let usersId;
     export let commentId;
     let date;
 
@@ -29,16 +29,21 @@
 
 <div class="content">
     <div class="user_info">
-        <img class="user_photo" src={userphoto} alt="" />
+        <img class="user_photo" alt="" />
         <a href="/profile" class="user_name"><p>{username}</p></a>
     </div>
     <div class="comment">
         <div class="date"><p>posted on: {date}</p></div>
         <p>{comment}</p>
-
-        <div class="interaction-menu">
-            <button on:click={deleteComment}>Delete</button>
-        </div>
+        {#if $user !== undefined}
+            {#if $user.id === usersId}
+                <div class="interaction-menu">
+                    <button class="delete-btn" on:click={deleteComment}
+                        >Delete</button
+                    >
+                </div>
+            {/if}
+        {/if}
     </div>
 </div>
 
@@ -51,6 +56,15 @@
         box-shadow: -1px 2px 15px -1px rgba(0, 0, 0, 0.46);
         -webkit-box-shadow: -1px 2px 8px -1px rgba(0, 0, 0, 0.35);
     }
+
+    .delete-btn {
+        padding: 2px 10px 2px 10px;
+        cursor: pointer;
+        border: none;
+        background-color: #c70000;
+        font-size: 16px;
+        border-radius: 3px;
+    }
     .user_info {
         width: 15%;
         text-align: center;
@@ -62,6 +76,7 @@
         width: 50px;
         border-radius: 100px;
         border: 1px solid black;
+        content: url(userpic.png);
     }
 
     .user_name p {

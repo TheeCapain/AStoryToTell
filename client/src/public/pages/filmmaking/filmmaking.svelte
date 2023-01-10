@@ -1,13 +1,12 @@
 <script>
-    import { socket } from "../../../global/global";
     import Post from "../../components/post/post.svelte";
 
     let allPosts = [];
 
     async function getPosts() {
-        let response = await fetch(`http://localhost:8080/api/posts/filmmaking`).then(
-            (response) => response.json()
-        );
+        let response = await fetch(
+            `http://localhost:8080/api/posts/filmmaking`
+        ).then((response) => response.json());
         allPosts = await response.posts;
     }
 
@@ -16,8 +15,10 @@
 
 <body>
     <div class="content">
+        <h1 class="trend">Technical issues</h1>
         {#each allPosts as post}
             <Post
+                userId={post.user_id}
                 postId={post.post_id}
                 userphoto={undefined}
                 username={post.user_name}
@@ -32,9 +33,6 @@
 <style>
     body {
         margin: auto;
-    }
-    .content {
-        border: solid 2px;
     }
     .trend {
         margin: 0 auto;

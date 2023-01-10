@@ -12,10 +12,11 @@
 
 <body>
     <div class="content">
-        <h1 class="trend">Stories most recently told</h1>
+        <h1 class="trend">Movie News</h1>
         {#each posts as post}
             {#if post.name !== undefined}
                 <Post
+                    userId={undefined}
                     postId={post.id}
                     userphoto={""}
                     username={""}
@@ -25,6 +26,7 @@
                 />
             {:else}
                 <Post
+                    userId={undefined}
                     postId={post.id}
                     userphoto={""}
                     username={""}

@@ -4,6 +4,7 @@
     import AddComment from "../comments/addComment.svelte";
 
     export let postId;
+    export let userId;
     export let userphoto;
     export let username;
     export let headline;
@@ -33,7 +34,21 @@
         }).then((response) => response.json());
 
         allComments = await response.comments;
-        console.log(allComments)
+        console.log(allComments);
+    }
+
+    async function deletePost() {
+        const post = {
+            id: postId,
+        };
+
+        let response = await fetch(`http://localhost:8080/api/posts/delete`, {
+            method: "DELETE",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(post),
+        }).then((response) => response.json());
     }
 
     getComments();
@@ -41,9 +56,7 @@
 
 <div class="content">
     <div class="user">
-        {#if userphoto !== ""}
-            <img class="user_photo" src={userphoto} alt="" />
-        {/if}
+        <img class="user_photo" alt="" />
 
         {#if username !== ""}
             <br />
@@ -65,10 +78,17 @@
             {content}
         </p>
     </div>
+    {#if $user !== undefined}
+        {#if $user.id === userId}
+            <div class="interaction-menu">
+                <button class="delete-btn" on:click={deletePost}>Delete</button>
+            </div>
+        {/if}
+    {/if}
 
     {#each allComments as comment}
         <Comment
-            usersId = {comment.fk_user_id}
+            usersId={comment.fk_user_id}
             commentId={comment.comment_id}
             userphoto={undefined}
             username={comment.user_name}
@@ -90,6 +110,7 @@
         width: 50px;
         border-radius: 100px;
         border: 1px solid black;
+        content: url(userpic.png);
     }
 
     .content {
@@ -101,7 +122,14 @@
         box-shadow: -1px 2px 15px -1px rgba(0, 0, 0, 0.46);
         -webkit-box-shadow: -1px 2px 8px -1px rgba(0, 0, 0, 0.35);
     }
-
+    .delete-btn {
+        padding: 2px 10px 2px 10px;
+        cursor: pointer;
+        border: none;
+        background-color: #c70000;
+        font-size: 16px;
+        border-radius: 3px;
+    }
     .image {
         width: 100%;
         background-color: green;

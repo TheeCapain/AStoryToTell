@@ -19,7 +19,7 @@
       <Link to="/home"><a href="/"><i class="fa fa-home">Logo</i></a></Link>
       <Link to="/home"><a href="/"><i class="fa fa-home" /></a></Link>
       <Link to="/filmmaking"><a href="/"><i class="fa fa-camera" /></a></Link>
-      <Link to="/bookWriting"><a href="/"><i class="fa fa-book" /></a></Link>
+      <Link to="/bookwriting"><a href="/"><i class="fa fa-book" /></a></Link>
       <Link to="/about"><a href="/"><i class="fa fa-music" /></a></Link>
       <Link to="/profile"><a href="/"><i class="fa fa-user" /></a></Link>
     </nav>

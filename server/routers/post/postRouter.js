@@ -1,33 +1,15 @@
 import express from "express";
 import { Router } from 'express';
-import { Server } from "socket.io"
-import http from "http";
 import db from '../../database/connection_sqlite.js'
 
 const app = express();
-const httpServer = http.createServer(app);
 const postRouter = new Router()
-/*
-const io = new Server(httpServer, {
-    cors: {
-        origin: "*",
-        methods: ["GET", "POST"],
-    },
-});
 
-io.on("connection", (socket) => {
-    socket.on("get posts", async () => {
-        const data = await db.all(`SELECT  * FROM posts
-        INNER JOIN users ON users.user_id = posts.fk_user_id`)
-        console.log("Sending posts back");
-        io.emit("update posts", data)
-    });
-});
-
-httpServer.listen(3000, () => {
-    console.log(`Example app listening on port ${3000}`);
-});
-*/
+postRouter.delete("/api/posts/delete", async (req, res) => {
+    console.log(req.body)
+    await db.run(`DELETE FROM posts WHERE post_id=?`, [req.body.id])
+    res.send({ message: "Deleted from DB" })
+})
 
 postRouter.get("/api/post/test", async (req, res) => {
     const data = await db.all(`SELECT * FROM posts WHERE post_category = "filmmaking"`);
