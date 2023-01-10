@@ -42,8 +42,8 @@ postRouter.post("/api/countpost", async (req, res) => {
 
 postRouter.post("/api/posts", async (req, res) => {
     if (req.body.userid && req.body.title && req.body.content) {
-        await db.run("INSERT INTO posts (fk_user_id, post_title, post_content) VALUES(?,?,?)",
-            [req.body.userid, req.body.title, req.body.content])
+        await db.run("INSERT INTO posts (fk_user_id, post_category, post_title, post_content) VALUES(?,?,?,?)",
+            [req.body.userid, req.body.category, req.body.title, req.body.content])
         res.status(200).send({ message: "Data was inserted" })
     }
 });
