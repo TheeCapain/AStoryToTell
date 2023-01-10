@@ -45,6 +45,15 @@ db.exec(`CREATE TABLE IF NOT EXISTS comments (
     FOREIGN KEY(fk_post_id) REFERENCES posts(post_id)
 )`)
 
+
+db.exec(`CREATE TABLE IF NOT EXISTS bookmarks (
+    bookmark_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fk_user_id int null,
+    fk_post_id int null,
+    FOREIGN KEY(fk_user_id) REFERENCES users(user_id),
+    FOREIGN KEY(fk_post_id) REFERENCES posts(post_id)
+)`)
+
 if (isInDeleteMode) {
 
     db.run(`INSERT INTO users
@@ -61,5 +70,10 @@ if (isInDeleteMode) {
     (fk_user_id, fk_post_id, comment_content)
     VALUES
     (1,1,"This is the db Comment")`)
+
+    db.run(`INSERT INTO bookmarks 
+    (fk_user_id, fk_post_id)
+    VALUES
+    (1,1)`)
 
 }

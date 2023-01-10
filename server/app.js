@@ -11,24 +11,26 @@ import session from "express-session"
 import cors from "cors";
 app.use(cors());
 //USER ROUTER
-import userRouter from './routers/user/userRouter.js';
+import userRouter from "./routers/userRouter.js";
 app.use(userRouter)
 //SIGNUP ROUTER
-import signupRouter from './routers/signup/signupRouter.js'
+import signupRouter from './routers/signupRouter.js'
 app.use(signupRouter)
 //LOGIN ROUTER
-import loginRouter from './routers/login/loginRouter.js'
+import loginRouter from './routers/loginRouter.js'
 app.use(loginRouter)
 //MAIL ROUTER
-import mailRouter from "./routers/mail/mailRouter.js";
+import mailRouter from "./routers/mailRouter.js";
 app.use(mailRouter)
 //POSTROUTER
-import postRouter from "./routers/post/postRouter.js";
+import postRouter from "./routers/postRouter.js";
 app.use(postRouter)
 //COMMENTROUTER
-import commentRouter from "./routers/comment/commentRouters.js";
+import commentRouter from "./routers/commentRouters.js";
 app.use(commentRouter)
-//Session wrapper
+//BOOKMARKROUTER
+import bookmarkRouter from "./routers/bookmarkRouter.js"
+app.use(bookmarkRouter)
 
 app.use(express.json());
 

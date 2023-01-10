@@ -1,7 +1,7 @@
 <script>
-  import UserInfo from "../../components/profile/userInfo.svelte";
-  import Post from "../../components/post/post.svelte";
-  import { user } from "../../../global/global";
+  import UserInfo from "../components/profile/userInfo.svelte";
+  import Post from "../components/post/post.svelte";
+  import { user } from "../../global/global";
   let posts = [];
 
   async function getPosts() {

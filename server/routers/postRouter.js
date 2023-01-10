@@ -1,6 +1,6 @@
 import express from "express";
 import { Router } from 'express';
-import db from '../../database/connection_sqlite.js'
+import db from '../database/connection_sqlite.js'
 
 const app = express();
 const postRouter = new Router()

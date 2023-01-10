@@ -1,6 +1,6 @@
 import { response, Router } from 'express'
-import db from '../../database/connection_sqlite.js'
-import { passwordCompare } from '../../utils/encryption.js';
+import db from '../database/connection_sqlite.js'
+import { passwordCompare } from '../utils/encryption.js';
 
 const loginRouter = Router();
 

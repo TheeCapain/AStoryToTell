@@ -1,7 +1,7 @@
 import { Router } from 'express'
-import db from '../../database/connection_sqlite.js'
-import { passwordHashing } from "../../utils/encryption.js";
-import { handleEmail } from '../mail/mailRouter.js';
+import db from '../database/connection_sqlite.js'
+import { passwordHashing } from "../utils/encryption.js";
+import { handleEmail } from './mailRouter.js';
 
 const signupRouter = Router();
 

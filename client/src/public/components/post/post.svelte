@@ -34,7 +34,7 @@
         }).then((response) => response.json());
 
         allComments = await response.comments;
-        console.log(allComments);
+
     }
 
     async function deletePost() {

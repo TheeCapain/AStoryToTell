@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import nodemailer from 'nodemailer'
 import dotenv from "dotenv"
-import db from '../../database/connection_sqlite.js'
+import db from '../database/connection_sqlite.js'
 
 dotenv.config()
 
