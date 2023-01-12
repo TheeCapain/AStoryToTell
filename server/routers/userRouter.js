@@ -13,4 +13,10 @@ userRouter.post("/api/users/id", async (req, res) => {
     res.send({ info: data });
 })
 
+userRouter.patch("/api/users/id", async (req, res) => {
+    console.log(req.body)
+    const user = await db.all(`UPDATE users SET user_name=?, user_bio=?
+     WHERE user_id = ?`, [req.body.userName, req.body.userBio, req.body.id])
+})
+
 export default userRouter;

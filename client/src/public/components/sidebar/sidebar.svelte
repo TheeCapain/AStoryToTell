@@ -18,6 +18,7 @@
     <Link to="/profile"><a href="/">Your profile</a></Link>
     <Link to="/newPost"><a href="/">Add Post</a></Link>
     <Link to="/bookmarks"><a href="/">Bookmarked</a></Link>
+    <Link to="/settings"> <a href="/">Settings</a></Link>
     <button on:click={handleLogout}>Logout</button>
   </div>
 </Router>

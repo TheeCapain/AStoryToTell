@@ -10,6 +10,7 @@
   import Writing from "../../pages/writing.svelte";
   import Bookmarks from "../../pages/bookmarks.svelte";
   import Music from "../../pages/music.svelte";
+  import Settings from "../../pages/settings.svelte";
 </script>
 
 <link
@@ -17,51 +18,18 @@
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 />
 <div class="icon-bar">
-  <Router>
-    <nav id="icon-bar">
-      <Link to="/home"><a href="/"><i class="fa fa-home">Logo</i></a></Link>
-      <Link to="/home"><a href="/"><i class="fa fa-home" /></a></Link>
-      <Link to="/filmmaking"><a href="/"><i class="fa fa-camera" /></a></Link>
-      <Link to="/bookwriting"><a href="/"><i class="fa fa-book" /></a></Link>
-      <Link to="/music"><a href="/"><i class="fa fa-music" /></a></Link>
-      {#if !$user}
-        <Link to="/login"><a href="/"><i class="fa fa-user" /></a></Link>
-      {:else}
-        <Link to="/profile"><a href="/"><i class="fa fa-user" /></a></Link>
-      {/if}
-    </nav>
-
-    <main>
-      <Route path="/home">
-        <Home />
-      </Route>
-      <Route path="login">
-        <Login />
-      </Route>
-      <PrivateRoute path="/newPost" let:location>
-        <NewPost />
-      </PrivateRoute>
-      <Route path="/bookmarks">
-        <Bookmarks />
-      </Route>
-      <Route path="/filmmaking">
-        <Filmmaking />
-      </Route>
-      <Route path="/bookwriting">
-        <Writing />
-      </Route>
-      <Route path="/music">
-        <Music />
-      </Route>
-      <Route path="/profile">
-        {#if $user}
-          <Profile userId={$user.id} />
-        {:else}
-          <Login />
-        {/if}
-      </Route>
-    </main>
-  </Router>
+  <nav id="icon-bar">
+    <Link to="/home"><a href="/"><i class="fa fa-home">Logo</i></a></Link>
+    <Link to="/home"><a href="/"><i class="fa fa-home" /></a></Link>
+    <Link to="/filmmaking"><a href="/"><i class="fa fa-camera" /></a></Link>
+    <Link to="/bookwriting"><a href="/"><i class="fa fa-book" /></a></Link>
+    <Link to="/music"><a href="/"><i class="fa fa-music" /></a></Link>
+    {#if !$user}
+      <Link to="/login"><a href="/"><i class="fa fa-user" /></a></Link>
+    {:else}
+      <Link to="/profile"><a href="/"><i class="fa fa-user" /></a></Link>
+    {/if}
+  </nav>
 </div>
 
 <style>

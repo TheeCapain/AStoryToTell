@@ -18,6 +18,7 @@
             body: JSON.stringify(post),
         }).then((response) => response.json());
         allPosts = await response.data;
+        console.log(allPosts)
     }
 
     getPosts();
@@ -30,7 +31,6 @@
             <Post
                 userId={post.user_id}
                 postId={post.post_id}
-                userphoto={undefined}
                 username={post.user_name}
                 headline={post.post_title}
                 content={post.post_content}

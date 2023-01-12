@@ -46,43 +46,45 @@
     countPosts();
 </script>
 
-<div class="user_info">
-    <div class="user_picture">
-        <img alt="" />
+<body>
+    <div class="user_info">
+        <div class="user_picture">
+            <img alt="" />
+        </div>
+        <div class="info">
+            <div class="user_name">
+                <h1>{user_name}</h1>
+            </div>
+            <div class="mail">
+                <p>{user_mail}</p>
+            </div>
+            <div class="telefon">
+                <p>Telefon</p>
+            </div>
+            <div class="user_bio">
+                <h1>User Bio</h1>
+                <p>{user_bio}</p>
+            </div>
+            <div class="knap">
+                <Link to="/newPost"><button>+ New Post</button></Link>
+            </div>
+        </div>
+        <div class="stats">
+            <div class="antal_opslag">
+                <h1>Antal opslag</h1>
+                <p>{postNr}</p>
+            </div>
+            <div class="point">
+                <h1>Antal point</h1>
+            </div>
+            <div class="job">
+                <h1>Jobbeskrivelse</h1>
+                <p>Instruktør</p>
+            </div>
+        </div>
+        <div class="user_stats" />
     </div>
-    <div class="info">
-        <div class="user_name">
-            <h1>{user_name}</h1>
-        </div>
-        <div class="mail">
-            <p>{user_mail}</p>
-        </div>
-        <div class="telefon">
-            <p>Telefon</p>
-        </div>
-        <div class="user_bio">
-            <h1>User Bio</h1>
-            <p>{user_bio}</p>
-        </div>
-        <div class="knap">
-            <Link to="/newPost"><button>+ New Post</button></Link>
-        </div>
-    </div>
-    <div class="stats">
-        <div class="antal_opslag">
-            <h1>Antal opslag</h1>
-            <p>{postNr}</p>
-        </div>
-        <div class="point">
-            <h1>Antal point</h1>
-        </div>
-        <div class="job">
-            <h1>Jobbeskrivelse</h1>
-            <p>Instruktør</p>
-        </div>
-    </div>
-    <div class="user_stats" />
-</div>
+</body>
 
 <style>
     .user_info {
@@ -103,7 +105,7 @@
         height: 225px;
         width: 225px;
         margin: 25px 50px;
-        border-radius: 100px;
+        border-radius: 125px;
         border: 1px solid black;
         content: url(userpic.png);
     }
