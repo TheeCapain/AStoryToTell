@@ -54,8 +54,11 @@
         <Music />
       </Route>
       <Route path="/profile">
-        <Profile userId={$user.id} 
-        userName={$user.username}/>
+        {#if $user}
+          <Profile userId={$user.id} />
+        {:else}
+          <Login />
+        {/if}
       </Route>
     </main>
   </Router>

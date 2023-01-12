@@ -1,11 +1,17 @@
 <script>
   import UserInfo from "../components/profile/userInfo.svelte";
   import Post from "../components/post/post.svelte";
+  import { user } from "../../global/global";
   let posts = [];
   export let userId;
   let user_name;
 
   async function userData() {
+    let visit = localStorage.getItem("visit");
+
+    if (visit) {
+      userId = visit;
+    }
     let id = {
       id: userId,
     };
@@ -18,7 +24,6 @@
       body: JSON.stringify(id),
     });
     let info = await userInfo.json();
-    console.log(info);
     user_name = info.info[0].user_name;
   }
 
@@ -27,7 +32,6 @@
     if (check != null) {
       userId = check;
     }
-    console.log(userId);
     let id = {
       id: userId,
     };
@@ -42,9 +46,7 @@
 
     if (response.ok) {
       let userPosts = await response.json();
-
       posts = userPosts.posts;
-      console.log(posts);
       userData();
     }
   }
