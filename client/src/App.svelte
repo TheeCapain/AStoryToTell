@@ -1,9 +1,11 @@
 <script>
+    import Toastr from "toastr";
+    import "../node_modules/toastr/build/toastr.css";
     import Navigator from "./public/components/routers/navigator.svelte";
     import Sidebar from "./public/components/sidebar/sidebar.svelte";
-    import { user, BASE_URL, ENVIRONMENT } from "./global/global.js";
+    import { user } from "./global/global.js";
 
-    
+   //Toastr.warning("test");
 </script>
 
 <Navigator />

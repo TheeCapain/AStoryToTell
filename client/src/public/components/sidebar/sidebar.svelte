@@ -4,6 +4,7 @@
 
   function handleLogout() {
     $user = null;
+    localStorage.clear()
   }
 </script>
 

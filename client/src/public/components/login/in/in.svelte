@@ -24,10 +24,13 @@
         let data = await response.json();
         let username = data.username;
         let id = data.userid;
+     
         if (response.ok) {
             $user = { username, id };
+            console.log($user)
+            localStorage.setItem("loggedIn", JSON.stringify($user))
             const from =
-                ($location.state && $location.state.from) || "/profile";
+                ($location.state && $location.state.from) || "/home";
             navigate(from, { replace: true });
         }
     }

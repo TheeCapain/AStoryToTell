@@ -5,17 +5,16 @@
 
     async function getPosts() {
         let response = await fetch(
-            `http://localhost:8080/api/posts/filmmaking`
+            `http://localhost:8080/api/posts/music`
         ).then((response) => response.json());
         allPosts = await response.posts;
     }
 
-    getPosts();
 </script>
 
 <body>
     <div class="content">
-        <h1 class="trend">Technical issues</h1>
+        <h1 class="trend">Share your music</h1>
         {#each allPosts as post}
             <Post
                 userId={post.user_id}

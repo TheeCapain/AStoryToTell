@@ -1,5 +1,6 @@
 <script>
   import { Router, Route, Link } from "svelte-navigator";
+  import { user } from "../../../global/global";
   import Home from "../../pages/home.svelte";
   import Profile from "../../pages/profile.svelte";
   import Login from "../../pages/login.svelte";
@@ -8,6 +9,7 @@
   import Filmmaking from "../../pages/filmmaking.svelte";
   import Writing from "../../pages/writing.svelte";
   import Bookmarks from "../../pages/bookmarks.svelte";
+  import Music from "../../pages/music.svelte";
 </script>
 
 <link
@@ -22,7 +24,11 @@
       <Link to="/filmmaking"><a href="/"><i class="fa fa-camera" /></a></Link>
       <Link to="/bookwriting"><a href="/"><i class="fa fa-book" /></a></Link>
       <Link to="/music"><a href="/"><i class="fa fa-music" /></a></Link>
-      <Link to="/profile"><a href="/"><i class="fa fa-user" /></a></Link>
+      {#if !$user}
+        <Link to="/login"><a href="/"><i class="fa fa-user" /></a></Link>
+      {:else}
+        <Link to="/profile"><a href="/"><i class="fa fa-user" /></a></Link>
+      {/if}
     </nav>
 
     <main>
@@ -32,11 +38,11 @@
       <Route path="login">
         <Login />
       </Route>
-      <Route path="/newPost">
+      <PrivateRoute path="/newPost" let:location>
         <NewPost />
-      </Route>
+      </PrivateRoute>
       <Route path="/bookmarks">
-        <Bookmarks/>
+        <Bookmarks />
       </Route>
       <Route path="/filmmaking">
         <Filmmaking />
@@ -44,10 +50,13 @@
       <Route path="/bookwriting">
         <Writing />
       </Route>
-      <Route path="/music" />
-      <PrivateRoute path="/profile" let:location>
-        <Profile />
-      </PrivateRoute>
+      <Route path="/music">
+        <Music />
+      </Route>
+      <Route path="/profile">
+        <Profile userId={$user.id} 
+        userName={$user.username}/>
+      </Route>
     </main>
   </Router>
 </div>

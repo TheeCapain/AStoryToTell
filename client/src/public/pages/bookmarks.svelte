@@ -1,14 +1,23 @@
 <script>
+    import toastr from "toastr"
     import Post from "../components/post/post.svelte";
-
+    import { user } from "../../global/global";
     let allPosts = [];
 
     async function getPosts() {
-        let response = await fetch(
-            `http://localhost:8080/api/bookmarks/id`
-        ).then((response) => response.json());
-        allPosts = await response.bookmarks;
-        console.log(allPosts)
+
+        const post = {
+            id: $user.id,
+        };
+
+        let response = await fetch(`http://localhost:8080/api/bookmarks/id`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(post),
+        }).then((response) => response.json());
+        allPosts = await response.data;
     }
 
     getPosts();

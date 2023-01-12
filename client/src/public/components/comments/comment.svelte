@@ -1,11 +1,15 @@
 <script>
     import { user, socket } from "../../../global/global";
-    export let userphoto;
+    import { Link } from "svelte-navigator";
     export let username;
     export let comment;
-    export let usersId;
+    export let userId;
     export let commentId;
     let date;
+
+    function visitProfile() {
+        localStorage.setItem("visit", userId);
+    }
 
     async function deleteComment() {
         const comment = {
@@ -30,13 +34,17 @@
 <div class="content">
     <div class="user_info">
         <img class="user_photo" alt="" />
-        <a href="/profile" class="user_name"><p>{username}</p></a>
+        <Link to="/profile"
+            ><button on:click={visitProfile} class="user_name"
+                ><p>{username}</p></button
+            ></Link
+        >
     </div>
     <div class="comment">
         <div class="date"><p>posted on: {date}</p></div>
         <p>{comment}</p>
-        {#if $user !== undefined}
-            {#if $user.id === usersId}
+        {#if $user}
+            {#if $user.id === userId}
                 <div class="interaction-menu">
                     <button class="delete-btn" on:click={deleteComment}
                         >Delete</button
@@ -79,8 +87,15 @@
         content: url(userpic.png);
     }
 
-    .user_name p {
-        margin-top: auto;
+    .user_name {
+        color: blue;
+        background: none;
+        border: none;
+    }
+
+    .user_name:hover {
+        color: red;
+        cursor: pointer;
     }
 
     .comment {

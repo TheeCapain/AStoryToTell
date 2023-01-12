@@ -2,10 +2,8 @@
     import { user, socket } from "../../../global/global";
     import Comment from "../comments/comment.svelte";
     import AddComment from "../comments/addComment.svelte";
-
     export let postId;
     export let userId;
-    export let userphoto;
     export let username;
     export let headline;
     export let content;
@@ -34,7 +32,6 @@
         }).then((response) => response.json());
 
         allComments = await response.comments;
-
     }
 
     async function deletePost() {
@@ -51,9 +48,28 @@
         }).then((response) => response.json());
     }
 
+    async function bookmarkPost() {
+        const bookmark = {
+            postId: postId,
+            userId: $user.id,
+        };
+
+        let response = await fetch(`http://localhost:8080/api/bookmarks`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(bookmark),
+        }).then((response) => response.json());
+    }
+
     getComments();
 </script>
 
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
 <div class="content">
     <div class="user">
         <img class="user_photo" alt="" />
@@ -78,19 +94,19 @@
             {content}
         </p>
     </div>
-    {#if $user !== undefined}
-        {#if $user.id === userId}
-            <div class="interaction-menu">
+    {#if $user}
+        <div class="interaction-menu">
+            <button class="save-btn" on:click={bookmarkPost}>Save</button>
+            {#if $user.id === userId}
                 <button class="delete-btn" on:click={deletePost}>Delete</button>
-            </div>
-        {/if}
+            {/if}
+        </div>
     {/if}
 
     {#each allComments as comment}
         <Comment
-            usersId={comment.fk_user_id}
+            userId={comment.fk_user_id}
             commentId={comment.comment_id}
-            userphoto={undefined}
             username={comment.user_name}
             comment={comment.comment_content}
         />
@@ -130,6 +146,17 @@
         font-size: 16px;
         border-radius: 3px;
     }
+
+    .save-btn {
+        padding: 2px 10px 2px 10px;
+        cursor: pointer;
+        border: none;
+        background-color: blue;
+        font-size: 16px;
+        border-radius: 3px;
+        text-decoration: none;
+    }
+
     .image {
         width: 100%;
         background-color: green;

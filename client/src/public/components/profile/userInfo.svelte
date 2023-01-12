@@ -1,14 +1,16 @@
 <script>
     import { user } from "./../../../global/global.js";
     import { Link } from "svelte-navigator";
-
+    export let userId;
     let postNr;
+    let user_name;
     let user_mail;
     let user_bio;
     let user_roles;
+
     async function countPosts() {
         let id = {
-            id: $user.id,
+            id: userId,
         };
 
         let postInfo = await fetch(`http://localhost:8080/api/countpost`, {
@@ -24,7 +26,7 @@
 
     async function userData() {
         let id = {
-            id: $user.id,
+            id: userId,
         };
 
         let userInfo = await fetch(`http://localhost:8080/api/users/id`, {
@@ -35,10 +37,10 @@
             body: JSON.stringify(id),
         });
         let info = await userInfo.json();
-        user_mail = info.info[0].user_mail
-        user_bio = info.info[0].user_bio
-        user_roles = info.info[0].user_roles
-
+        user_name = info.info[0].user_name;
+        user_mail = info.info[0].user_mail;
+        user_bio = info.info[0].user_bio;
+        user_roles = info.info[0].user_roles;
     }
     userData();
     countPosts();
@@ -50,7 +52,7 @@
     </div>
     <div class="info">
         <div class="user_name">
-            <h1>{$user.username}</h1>
+            <h1>{user_name}</h1>
         </div>
         <div class="mail">
             <p>{user_mail}</p>

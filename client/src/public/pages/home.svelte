@@ -18,7 +18,6 @@
                 <Post
                     userId={undefined}
                     postId={post.id}
-                    userphoto={""}
                     username={""}
                     headline={post.name}
                     content={post.overview}
@@ -28,7 +27,6 @@
                 <Post
                     userId={undefined}
                     postId={post.id}
-                    userphoto={""}
                     username={""}
                     headline={post.title}
                     content={post.overview}

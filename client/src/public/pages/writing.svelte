@@ -27,7 +27,6 @@
             <Post
                 userId={post.user_id}
                 postId={post.post_id}
-                userphoto={undefined}
                 username={post.user_name}
                 headline={post.post_title}
                 content={post.post_content}

@@ -1,12 +1,35 @@
 <script>
   import UserInfo from "../components/profile/userInfo.svelte";
   import Post from "../components/post/post.svelte";
-  import { user } from "../../global/global";
   let posts = [];
+  export let userId;
+  let user_name;
+
+  async function userData() {
+    let id = {
+      id: userId,
+    };
+
+    let userInfo = await fetch(`http://localhost:8080/api/users/id`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(id),
+    });
+    let info = await userInfo.json();
+    console.log(info);
+    user_name = info.info[0].user_name;
+  }
 
   async function getPosts() {
+    let check = localStorage.getItem("visit");
+    if (check != null) {
+      userId = check;
+    }
+    console.log(userId);
     let id = {
-      id: $user.id,
+      id: userId,
     };
 
     let response = await fetch(`http://localhost:8080/api/posts/id`, {
@@ -16,20 +39,25 @@
       },
       body: JSON.stringify(id),
     });
-    let userPosts = await response.json();
-    posts = userPosts.posts;
+
+    if (response.ok) {
+      let userPosts = await response.json();
+
+      posts = userPosts.posts;
+      console.log(posts);
+      userData();
+    }
   }
   getPosts();
 </script>
 
-<UserInfo />
+<UserInfo {userId} />
 <h1 class="trend">Your contributions</h1>
 {#each posts as post}
   <Post
-    userId = {post.user_id}
+    userId={post.user_id}
     postId={post.post_id}
-    userphoto={undefined}
-    username={$user.username}
+    username={user_name}
     headline={post.post_title}
     content={post.post_content}
     backdrop={""}

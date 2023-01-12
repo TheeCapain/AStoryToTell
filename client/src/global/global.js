@@ -1,7 +1,10 @@
 import { writable, readable } from "svelte/store";
 import io from "socket.io-client";
 //loggedin USER
-export const user = writable(undefined);
+
+let globalUser = localStorage.getItem("loggedIn")
+export const user1 = writable(undefined)
+export const user = writable(globalUser ? JSON.parse(globalUser) : null);
 export const socket = io("ws://localhost:3000");
 export const BASE_URL = readable("http://localhost:8080");
 export const ENVIRONMENT = writable("DEVELOPMENT");

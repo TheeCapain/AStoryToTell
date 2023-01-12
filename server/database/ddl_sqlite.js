@@ -1,6 +1,5 @@
 import db from '../database/connection_sqlite.js'
 
-
 const isInDeleteMode = true;
 
 if (isInDeleteMode) {
