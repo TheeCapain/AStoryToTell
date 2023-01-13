@@ -15,7 +15,6 @@
     import Bookmarks from "./public/pages/bookmarks.svelte";
     import Music from "./public/pages/music.svelte";
     import Settings from "./public/pages/settings.svelte";
-    //Toastr.warning("test");
 </script>
 
 <Router>
@@ -44,14 +43,10 @@
     <Route path="/music">
         <Music />
     </Route>
-    <Route path="/settings">
+    <PrivateRoute path="/settings" let:location>
         <Settings />
-    </Route>
-    <Route path="/profile">
-        {#if $user}
-            <Profile userId={$user.id} />
-        {:else}
-            <Login />
-        {/if}
-    </Route>
+    </PrivateRoute>
+    <PrivateRoute path="/profile" let:location>
+        <Profile userId={$user.id} />
+    </PrivateRoute>
 </Router>

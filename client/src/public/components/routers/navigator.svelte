@@ -1,16 +1,6 @@
 <script>
-  import { Router, Route, Link } from "svelte-navigator";
+  import { Link } from "svelte-navigator";
   import { user } from "../../../global/global";
-  import Home from "../../pages/home.svelte";
-  import Profile from "../../pages/profile.svelte";
-  import Login from "../../pages/login.svelte";
-  import PrivateRoute from "../login/privateRoute.svelte";
-  import NewPost from "../../pages/newPost.svelte";
-  import Filmmaking from "../../pages/filmmaking.svelte";
-  import Writing from "../../pages/writing.svelte";
-  import Bookmarks from "../../pages/bookmarks.svelte";
-  import Music from "../../pages/music.svelte";
-  import Settings from "../../pages/settings.svelte";
 </script>
 
 <link

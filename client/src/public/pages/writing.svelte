@@ -23,6 +23,10 @@
 <body>
     <div class="content">
         <h1 class="trend">Share your stories in progress</h1>
+        <p class="trend">
+            Welcome to a story to tell, in this category you can make social
+            posts and look for fellow filmmakers
+        </p>
         {#each allPosts as post}
             <Post
                 userId={post.user_id}

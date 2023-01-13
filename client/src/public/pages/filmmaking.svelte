@@ -16,6 +16,11 @@
 <body>
     <div class="content">
         <h1 class="trend">Technical issues</h1>
+        <p class="trend">
+            If you are having problems with equipment or editing tool feel free
+            to ask for help here.
+        </p>
+
         {#each allPosts as post}
             <Post
                 userId={post.user_id}

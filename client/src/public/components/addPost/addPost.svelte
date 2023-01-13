@@ -1,4 +1,5 @@
 <script>
+    import Toastr from "toastr";
     import { user } from "../../../global/global.js";
     let post_title;
     let post_content;
@@ -19,7 +20,8 @@
             },
             body: JSON.stringify(new_post),
         });
-        //Skal laves logik for at ændre siden
+
+        Toastr.success("Post created in " + post_category)
     }
 </script>
 
@@ -27,7 +29,7 @@
     <h3>Create a new post</h3>
     <form>
         <p>Title*</p>
-        <input bind:value={post_title} id="title" placeholder="Title" />
+        <input bind:value={post_title} id="title" type="text" placeholder="Title" />
         <br />
         <br>
         <label for="category">Choose a Category:</label>
@@ -53,5 +55,31 @@
         border-radius: 5px;
         box-shadow: -1px 2px 15px -1px rgba(0, 0, 0, 0.46);
         -webkit-box-shadow: -1px 2px 8px -1px rgba(0, 0, 0, 0.35);
+    }
+
+    input[type="text"],
+    textarea {
+        width: 90%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    select {
+        width: 93%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    button[type="button"] {
+        background-color: #04aa6d;
+        color: white;
+        padding: 12px 20px;
+        cursor: pointer;
     }
 </style>

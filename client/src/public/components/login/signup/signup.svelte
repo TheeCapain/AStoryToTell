@@ -1,9 +1,5 @@
 <script>
-    import { user } from "../../../../global/global.js";
-    import { useNavigate, useLocation } from "svelte-navigator";
-
-    const navigate = useNavigate();
-    const location = useLocation();
+    import Toastr from "toastr";
 
     let signup_username;
     let signup_email;
@@ -27,9 +23,10 @@
                 },
                 body: JSON.stringify(signup_user),
             });
-
-            if (response.ok) {
-                window.location.reload()
+            if (!response.ok) {
+                Toastr.warning("Email already in use " + signup_email);
+            } else{
+                Toastr.success("Sucess" + signup_email);
             }
         }
     }

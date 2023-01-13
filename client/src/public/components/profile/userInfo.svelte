@@ -58,9 +58,6 @@
             <div class="mail">
                 <p>{user_mail}</p>
             </div>
-            <div class="telefon">
-                <p>Telefon</p>
-            </div>
             <div class="user_bio">
                 <h1>User Bio</h1>
                 <p>{user_bio}</p>
@@ -74,12 +71,10 @@
                 <h1>Antal opslag</h1>
                 <p>{postNr}</p>
             </div>
-            <div class="point">
-                <h1>Antal point</h1>
-            </div>
             <div class="job">
-                <h1>Jobbeskrivelse</h1>
-                <p>Instruktør</p>
+                <h1>Experience</h1>
+                <p>Director</p>
+                <p>Photographer</p>
             </div>
         </div>
         <div class="user_stats" />

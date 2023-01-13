@@ -4,6 +4,9 @@
     import { user } from "../../global/global";
     let allPosts = [];
 
+
+    console.log($user)
+
     async function getPosts() {
 
         const post = {
@@ -27,11 +30,15 @@
 <body>
     <div class="content">
         <h1 class="trend">Bookmarks</h1>
+        <p class="trend">
+            Here are all your bookmarked posts
+        </p>
+
         {#each allPosts as post}
             <Post
                 userId={post.user_id}
                 postId={post.post_id}
-                username={post.user_name}
+                username={$user.username}
                 headline={post.post_title}
                 content={post.post_content}
                 backdrop={""}
