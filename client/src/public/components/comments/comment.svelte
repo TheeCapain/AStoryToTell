@@ -5,7 +5,7 @@
     export let comment;
     export let userId;
     export let commentId;
-    let date;
+    export let date;
 
     function visitProfile() {
         localStorage.setItem("visit", userId);

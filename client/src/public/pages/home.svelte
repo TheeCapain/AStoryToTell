@@ -38,10 +38,14 @@
 <body>
     <div class="content">
         <h1 class="trend">Social Hub and latest hot topics</h1>
-        <p class="trend">Welcome to a story to tell, in this category you can make social posts and look for fellow filmmakers</p>
+        <p class="trend">
+            Welcome to a story to tell, in this category you can make social
+            posts and look for fellow filmmakers
+        </p>
         {#each posts as post}
             {#if post.name !== undefined}
                 <Post
+                    postDate={post.release_date}
                     userId={undefined}
                     postId={post.id}
                     username={""}
@@ -51,6 +55,7 @@
                 />
             {:else}
                 <Post
+                    postDate={post.release_date}
                     userId={undefined}
                     postId={post.id}
                     username={""}

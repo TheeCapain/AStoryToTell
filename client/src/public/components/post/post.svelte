@@ -3,6 +3,7 @@
     import { user, socket } from "../../../global/global";
     import Comment from "../comments/comment.svelte";
     import AddComment from "../comments/addComment.svelte";
+    export let postDate;
     export let postId;
     export let userId;
     export let username;
@@ -60,9 +61,8 @@
             },
             body: JSON.stringify(bookmark),
         }).then((response) => response.json());
-        Toastr.success("Post bookmarked")
-        if(response.ok){
-          
+        Toastr.success("Post bookmarked");
+        if (response.ok) {
         }
     }
 
@@ -83,6 +83,7 @@
             <a href="/profile"><p>{username}</p></a>
         {/if}
     </div>
+    <p>posted on {postDate}</p>
     <h1 class="headline">{headline}</h1>
     {#if backdrop !== ""}
         <img
@@ -126,6 +127,7 @@
 
     {#each allComments as comment}
         <Comment
+            date={comment.comment_date}
             userId={comment.fk_user_id}
             commentId={comment.comment_id}
             username={comment.user_name}

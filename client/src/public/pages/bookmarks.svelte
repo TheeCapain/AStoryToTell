@@ -36,6 +36,7 @@
 
         {#each allPosts as post}
             <Post
+                postDate = {post.postDate}
                 userId={post.user_id}
                 postId={post.post_id}
                 username={$user.username}

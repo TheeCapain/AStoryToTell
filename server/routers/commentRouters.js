@@ -40,8 +40,8 @@ commentRouter.get("/api/comments/test", async (req, res) => {
 })
 
 commentRouter.post("/api/comments", async (req, res) => {
-    const data = await db.run(`INSERT INTO comments(fk_user_id, fk_post_id, comment_content) VALUES(?,?,?)`,
-        [req.body.userId, req.body.postId, req.body.comment]);
+    const data = await db.run(`INSERT INTO comments(fk_user_id, fk_post_id, comment_content, comment_date) VALUES(?,?,?,?)`,
+        [req.body.userId, req.body.postId, req.body.comment, req.body.date]);
     res.send({ comments: data });
 })
 

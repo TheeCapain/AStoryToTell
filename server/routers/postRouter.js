@@ -17,21 +17,21 @@ postRouter.get("/api/post/test", async (req, res) => {
 });
 
 postRouter.get("/api/posts/filmmaking", async (req, res) => {
-    const data = await db.all(`SELECT posts.post_id, posts.post_title, posts.post_content, users.user_id, users.user_name FROM posts 
+    const data = await db.all(`SELECT posts.post_id, posts.post_title, posts.post_content, posts.post_date, users.user_id, users.user_name FROM posts 
     INNER JOIN users ON users.user_id = posts.fk_user_id
     WHERE posts.post_category = "filmmaking"`);
     res.send({ posts: data });
 });
 
 postRouter.get("/api/posts/writing", async (req, res) => {
-    const data = await db.all(`SELECT posts.post_id, posts.post_title, posts.post_content, users.user_id, users.user_name FROM posts 
+    const data = await db.all(`SELECT posts.post_id, posts.post_title, posts.post_content, posts.post_date, users.user_id, users.user_name FROM posts 
     INNER JOIN users ON users.user_id = posts.fk_user_id
     WHERE posts.post_category = "writing"`);
     res.send({ posts: data });
 });
 
 postRouter.get("/api/posts/music", async (req, res) => {
-    const data = await db.all(`SELECT posts.post_id, posts.post_title, posts.post_content, users.user_id, users.user_name FROM posts 
+    const data = await db.all(`SELECT posts.post_id, posts.post_title, posts.post_content, posts.post_date, users.user_id, users.user_name FROM posts 
     INNER JOIN users ON users.user_id = posts.fk_user_id
     WHERE posts.post_category = "music"`);
     res.send({ posts: data });
@@ -49,8 +49,8 @@ postRouter.post("/api/countpost", async (req, res) => {
 
 postRouter.post("/api/posts", async (req, res) => {
     if (req.body.userid && req.body.title && req.body.content) {
-        await db.run("INSERT INTO posts (fk_user_id, post_category, post_title, post_content) VALUES(?,?,?,?)",
-            [req.body.userid, req.body.category, req.body.title, req.body.content])
+        await db.run("INSERT INTO posts (fk_user_id, post_category, post_title, post_content, post_date) VALUES(?,?,?,?,?)",
+            [req.body.userid, req.body.category, req.body.title, req.body.content, req.body.date])
         res.status(200).send({ message: "Data was inserted" })
     }
 });

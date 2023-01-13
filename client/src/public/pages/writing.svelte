@@ -29,6 +29,7 @@
         </p>
         {#each allPosts as post}
             <Post
+                postDate={post.post_date}
                 userId={post.user_id}
                 postId={post.post_id}
                 username={post.user_name}

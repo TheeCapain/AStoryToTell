@@ -3,13 +3,14 @@
     export let post_Id;
     let userphoto;
     let comment_Content;
-
+    const date = new Date();
     async function addComment() {
         const new_comment = {
             userId: $user.id,
             user_name: $user.user_name,
             postId: post_Id,
             comment: comment_Content,
+            date: date.toLocaleDateString("en-UK")
         };
 
         let response = await fetch(`http://localhost:8080/api/comments`, {
@@ -75,5 +76,4 @@
         border: 1px solid black;
         content: url(userpic.png);
     }
-
 </style>

@@ -57,7 +57,8 @@
 <h1 class="trend">Your contributions</h1>
 {#each posts as post}
   <Post
-    userId={userId}
+    postDate={post.post_date}
+    {userId}
     postId={post.post_id}
     username={user_name}
     headline={post.post_title}

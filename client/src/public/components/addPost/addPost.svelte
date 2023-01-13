@@ -5,13 +5,16 @@
     let post_content;
     let post_category;
 
+    const date = new Date();
+
     async function addPost() {
         console.log(post_category)
         const new_post = {
             userid: $user.id,
             title: post_title,
             content: post_content,
-            category: post_category
+            category: post_category,
+            date: date.toLocaleDateString("en-UK")
         };
         let response = await fetch(`http://localhost:8080/api/posts`, {
             method: "POST",

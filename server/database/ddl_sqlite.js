@@ -5,14 +5,9 @@ const isInDeleteMode = true;
 if (isInDeleteMode) {
     db.exec(`
         DROP TABLE IF EXISTS users;
-    `);
-}
-
-if (isInDeleteMode) {
-    db.exec(`
-        DROP TABLE IF EXISTS users;
         DROP TABLE IF EXISTS posts;
-        DROP TABLE IF EXISTS comments
+        DROP TABLE IF EXISTS comments;
+        DROP TABLE IF EXISTS bookmarks;
     `);
 }
 
@@ -31,6 +26,7 @@ db.exec(`CREATE TABLE IF NOT EXISTS posts (
     post_category VARCHAR(255),
     post_title VARCHAR(255),
     post_content VARCHAR(255),
+    post_date VARCHAR(255),
     FOREIGN KEY(fk_user_id) REFERENCES users(user_id)
  
     )`)
@@ -40,6 +36,7 @@ db.exec(`CREATE TABLE IF NOT EXISTS comments (
     fk_user_id int null,
     fk_post_id int null,
     comment_content VARCHAR(255),
+    comment_date VARCHAR(255),
     FOREIGN KEY(fk_user_id) REFERENCES users(user_id),
     FOREIGN KEY(fk_post_id) REFERENCES posts(post_id)
 )`)
