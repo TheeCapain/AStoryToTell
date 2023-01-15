@@ -1,10 +1,13 @@
 <script>
   import UserInfo from "../components/profile/userInfo.svelte";
   import Post from "../components/post/post.svelte";
-  import { user } from "../../global/global";
-  let posts = [];
+  import { user, socket } from "../../global/global";
   export let userId;
   let user_name;
+  let posts = [];
+  socket.on("update posts", async (data) => {
+    getPosts();
+  });
 
   async function userData() {
     let visit = localStorage.getItem("visit");

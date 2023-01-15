@@ -8,23 +8,27 @@
     const date = new Date();
 
     async function addPost() {
-        console.log(post_category)
-        const new_post = {
-            userid: $user.id,
-            title: post_title,
-            content: post_content,
-            category: post_category,
-            date: date.toLocaleDateString("en-UK")
-        };
-        let response = await fetch(`http://localhost:8080/api/posts`, {
-            method: "POST",
-            headers: {
-                "content-type": "application/json",
-            },
-            body: JSON.stringify(new_post),
-        });
+        if (post_content === undefined || post_title === undefined) {
+            Toastr.warning("Error: Posts must have a title and Content");
+        } else {
+            console.log(post_category);
+            const new_post = {
+                userid: $user.id,
+                title: post_title,
+                content: post_content,
+                category: post_category,
+                date: date.toLocaleDateString("en-UK"),
+            };
+            let response = await fetch(`http://localhost:8080/api/posts`, {
+                method: "POST",
+                headers: {
+                    "content-type": "application/json",
+                },
+                body: JSON.stringify(new_post),
+            });
 
-        Toastr.success("Post created in " + post_category)
+            Toastr.success("Post created in " + post_category);
+        }
     }
 </script>
 
@@ -32,15 +36,20 @@
     <h3>Create a new post</h3>
     <form>
         <p>Title*</p>
-        <input bind:value={post_title} id="title" type="text" placeholder="Title" />
+        <input
+            bind:value={post_title}
+            id="title"
+            type="text"
+            placeholder="Title"
+        />
         <br />
-        <br>
+        <br />
         <label for="category">Choose a Category:</label>
         <select name="category" id="category" bind:value={post_category}>
-          <option value="filmmaking">filmmaking</option>
-          <option value="writing">Writing</option>
-          <option value="music">Music</option>
-          <option value="social">Social</option>
+            <option value="filmmaking">filmmaking</option>
+            <option value="writing">Writing</option>
+            <option value="music">Music</option>
+            <option value="social">Social</option>
         </select>
         <p>Content</p>
         <textarea bind:value={post_content} name="" id="" cols="80" rows="10" />

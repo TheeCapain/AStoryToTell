@@ -1,8 +1,13 @@
 <script>
     import { onMount } from "svelte";
+    import { socket } from "../../global/global";
     import Post from "../components/post/post.svelte";
 
     let allPosts = [];
+
+    socket.on("update posts", async (data) => {
+        getPosts();
+    });
 
     async function getPosts() {
         let response = await fetch(
@@ -10,17 +15,19 @@
         ).then((response) => response.json());
         allPosts = await response.posts;
     }
-
-    onMount(getPosts)
-
+    onMount(getPosts);
 </script>
 
 <body>
     <div class="content">
         <h1 class="trend">Share your music</h1>
-        <p class="trend">Welcome to a story to tell, in this category you can make social posts and look for fellow filmmakers</p>
+        <p class="trend">
+            Welcome to a story to tell, in this category you can make social
+            posts and look for fellow filmmakers
+        </p>
         {#each allPosts as post}
             <Post
+                postDate={post.post_date}
                 userId={post.user_id}
                 postId={post.post_id}
                 username={post.user_name}

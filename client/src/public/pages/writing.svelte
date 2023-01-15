@@ -5,7 +5,6 @@
     let allPosts = [];
 
     socket.on("update posts", async (data) => {
-        allPosts = await data;
         getPosts();
     });
 

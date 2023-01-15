@@ -1,28 +1,27 @@
-import express from "express";
+
 import { Router } from 'express';
-import { Server } from "socket.io"
-import http from "http";
 import db from '../database/connection_sqlite.js'
+import io from "../utils/sockets.js";
 
-const app = express();
+
 const commentRouter = Router();
-const httpServer = http.createServer(app);
 
-const io = new Server(httpServer, {
-    cors: {
-        origin: "*",
-        methods: ["GET", "POST"],
-    },
-});
 
 io.on("connection", (socket) => {
-    socket.on("getpostcomments", async (arg) => {
+    socket.on("deletepostcomment", async (arg) => {
+        console.log(arg.id)
+        await db.run(`DELETE FROM comments WHERE comment_id=?`, [arg.id])
         io.emit("update comments", arg)
     });
 });
 
-httpServer.listen(3000, () => {
-    console.log(`Example app listening on port ${3000}`);
+io.on("connection", (socket) => {
+    socket.on("insertComment", async (arg) => {
+        console.log(arg)
+        const data = await db.run(`INSERT INTO comments(fk_user_id, fk_post_id, comment_content, comment_date) VALUES(?,?,?,?)`,
+            [arg.userId, arg.postId, arg.comment, arg.date]);
+        io.emit("update comments", arg)
+    });
 });
 
 commentRouter.delete("/api/comments/delete", async (req, res) => {

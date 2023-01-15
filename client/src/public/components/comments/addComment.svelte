@@ -1,27 +1,27 @@
 <script>
     import { user, socket } from "../../../global/global.js";
+    import Toastr from "toastr";
     export let post_Id;
     let userphoto;
     let comment_Content;
     const date = new Date();
-    async function addComment() {
-        const new_comment = {
-            userId: $user.id,
-            user_name: $user.user_name,
-            postId: post_Id,
-            comment: comment_Content,
-            date: date.toLocaleDateString("en-UK")
-        };
 
-        let response = await fetch(`http://localhost:8080/api/comments`, {
-            method: "POST",
-            headers: {
-                "content-type": "application/json",
-            },
-            body: JSON.stringify(new_comment),
-        });
-        comment_Content = "";
-        socket.emit("getpostcomments", new_comment);
+    
+    async function addComment() {
+        if (comment_Content === undefined) {
+            Toastr.warning("Comments must have a message");
+        } else {
+            const new_comment = {
+                userId: $user.id,
+                user_name: $user.user_name,
+                postId: post_Id,
+                comment: comment_Content,
+                date: date.toLocaleDateString("en-UK"),
+            };
+
+            comment_Content = "";
+            socket.emit("insertComment", new_comment);
+        }
     }
 </script>
 
@@ -74,6 +74,6 @@
         width: 50px;
         border-radius: 100px;
         border: 1px solid black;
-        content: url(userpic.png);
+        content: url(../../../assets/userpic.png);
     }
 </style>

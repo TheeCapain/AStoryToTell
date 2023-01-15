@@ -16,6 +16,8 @@
     import Music from "./public/pages/music.svelte";
     import Settings from "./public/pages/settings.svelte";
 </script>
+<body>
+    
 
 <Router>
     <Navigator />
@@ -50,3 +52,10 @@
         <Profile userId={$user.id} />
     </PrivateRoute>
 </Router>
+</body>
+<style>
+    * {
+        font-size: 100%;
+        font-family: Arial;
+    }
+</style>

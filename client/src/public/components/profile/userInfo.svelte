@@ -1,6 +1,7 @@
 <script>
     import { user } from "./../../../global/global.js";
     import { Link } from "svelte-navigator";
+    import { onMount } from "svelte";
     export let userId;
     let postNr;
     let user_name;
@@ -42,8 +43,8 @@
         user_bio = info.info[0].user_bio;
         user_roles = info.info[0].user_roles;
     }
-    userData();
-    countPosts();
+    onMount(userData)
+    onMount(countPosts)
 </script>
 
 <body>
@@ -60,7 +61,11 @@
             </div>
             <div class="user_bio">
                 <h1>User Bio</h1>
-                <p>{user_bio}</p>
+                {#if user_bio !== null}
+                    <p>{user_bio}</p>
+                {:else}
+                    <p>{""}</p>--
+                {/if}
             </div>
             <div class="knap">
                 <Link to="/newPost"><button>+ New Post</button></Link>
@@ -102,7 +107,7 @@
         margin: 25px 50px;
         border-radius: 125px;
         border: 1px solid black;
-        content: url(userpic.png);
+        content: url(./../../../assets/userpic.png);
     }
 
     .antal_opslag,

@@ -1,12 +1,20 @@
-import express from "express";
 import { Router } from 'express';
 import db from '../database/connection_sqlite.js'
+import io from "../utils/sockets.js";
 
-const app = express();
 const postRouter = new Router()
 
-postRouter.delete("/api/posts/delete", async (req, res) => {
-    console.log(req.body)
+io.on("connection", (socket) => {
+    socket.on("delete posts", async (arg) => {
+        console.log(arg.id)
+        await db.run(`DELETE FROM posts WHERE post_id=?`, [arg.id])
+        io.emit("update posts", arg)
+    })
+})
+
+
+
+postRouter.delete("/api/posts/deletes", async (req, res) => {
     await db.run(`DELETE FROM posts WHERE post_id=?`, [req.body.id])
     res.send({ message: "Deleted from DB" })
 })

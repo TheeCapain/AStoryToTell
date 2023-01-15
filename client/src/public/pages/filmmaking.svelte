@@ -1,7 +1,13 @@
 <script>
     import Post from "../components/post/post.svelte";
+    import { socket } from "../../global/global";
+    import { onMount } from "svelte";
 
     let allPosts = [];
+
+    socket.on("update posts", async (data) => {
+        getPosts();
+    });
 
     async function getPosts() {
         let response = await fetch(
@@ -9,8 +15,7 @@
         ).then((response) => response.json());
         allPosts = await response.posts;
     }
-
-    getPosts();
+onMount(getPosts)
 </script>
 
 <body>

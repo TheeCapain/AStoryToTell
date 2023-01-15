@@ -1,5 +1,7 @@
 <script>
     import { user } from "../../global/global";
+    import Toastr from "toastr";
+    import { onMount } from "svelte";
     let info;
     let name;
     let bio;
@@ -20,11 +22,9 @@
         name = info.info[0].user_name;
         bio = info.info[0].user_bio;
     }
-    userData();
 
     async function updateUserData() {
-        console.log("attempting to update user info");
-
+        Toastr.success("Information updated");
         let id = {
             id: $user.id,
             userName: name,
@@ -38,8 +38,10 @@
             },
             body: JSON.stringify(id),
         });
+
         info = await userInfo.json();
     }
+    onMount(userData);
 </script>
 
 <div class="container">
@@ -130,7 +132,7 @@
         margin: 25px 50px;
         border-radius: 125px;
         border: 1px solid black;
-        content: url(userpic.png);
+        content: url(../../assets/userpic.png);
     }
 
     .user_picture:hover {

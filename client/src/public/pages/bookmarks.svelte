@@ -1,14 +1,13 @@
 <script>
-    import toastr from "toastr"
+    import toastr from "toastr";
     import Post from "../components/post/post.svelte";
     import { user } from "../../global/global";
+    import { onMount } from "svelte";
     let allPosts = [];
 
-
-    console.log($user)
+    console.log($user);
 
     async function getPosts() {
-
         const post = {
             id: $user.id,
         };
@@ -21,22 +20,19 @@
             body: JSON.stringify(post),
         }).then((response) => response.json());
         allPosts = await response.data;
-        console.log(allPosts)
+        console.log(allPosts);
     }
-
-    getPosts();
+    onMount(getPosts);
 </script>
 
 <body>
     <div class="content">
         <h1 class="trend">Bookmarks</h1>
-        <p class="trend">
-            Here are all your bookmarked posts
-        </p>
+        <p class="trend">Here are all your bookmarked posts</p>
 
         {#each allPosts as post}
             <Post
-                postDate = {post.postDate}
+                postDate={post.postDate}
                 userId={post.user_id}
                 postId={post.post_id}
                 username={$user.username}

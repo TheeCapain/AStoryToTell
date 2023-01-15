@@ -40,6 +40,7 @@
     transition: all 0.3s ease;
     color: white;
     font-size: 20px;
+    text-decoration: none;;
   }
 
   .side-bar button {
