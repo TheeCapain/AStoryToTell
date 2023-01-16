@@ -9,16 +9,8 @@ const mailRouter = Router()
 let email = "";
 
 mailRouter.post("/api/mails/welcome", async (req, res) => {
-
-  console.log("we are in nodemailer")
-  console.log(req.body)
-
   const user = await db.run("SELECT * FROM users WHERE user_mail=?", [req.body.email])
-  console.log(user.user_email)
-
   email = req.body.email
-  console.log(email)
-  //Validate if email exists in DB
   handleEmail(email)
 
   res.status(200).send({ user: user.user_name });
@@ -280,7 +272,7 @@ export async function handleEmail(userEmail) {
                                       <table border="0" cellpadding="0" cellspacing="0">
                                         <tbody>
                                           <tr>
-                                            <td> <a href="https://www.reddit.com/" target="_blank">Go to profile</a> </td>
+                                            <td> <a href="http://127.0.0.1:5173/profile" target="_blank">Go to profile</a> </td>
                                           </tr>
                                         </tbody>
                                       </table>
@@ -302,10 +294,6 @@ export async function handleEmail(userEmail) {
           </table>
         </body>`,
   });
-
-  console.log("Message sent: %s", info.messageId);
-
-  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 
 }
 

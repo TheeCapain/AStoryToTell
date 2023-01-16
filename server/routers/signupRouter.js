@@ -10,10 +10,7 @@ signupRouter.post("/api/signup", async (req, res, next) => {
 
     const user = await db.get("SELECT * FROM users WHERE user_mail=?", [req.body.email])
     if (user) {
-        console.log(user)
-        console.log(user.user_mail)
         if (user.user_mail === req.body.email) {
-            console.log("user exists")
             res.status(400).send({ message: "User already exists" })
         }
     } else if (req.body.username && req.body.email && req.body.password) {
@@ -22,7 +19,6 @@ signupRouter.post("/api/signup", async (req, res, next) => {
         handleEmail(req.body.email)
         res.status(200).send({ user: req.body.username });
     } else {
-        console.log("error fields");
         res.status(400).send({ message: "Asign the information fields" });
     }
 

@@ -1,5 +1,6 @@
 <script>
     import Toastr from "toastr";
+    import { Link } from "svelte-navigator";
     import { user, socket } from "../../../global/global";
     import Comment from "../comments/comment.svelte";
     import AddComment from "../comments/addComment.svelte";
@@ -16,6 +17,10 @@
     socket.on("update comments", async (data) => {
         getComments();
     });
+
+    function visitProfile() {
+        localStorage.setItem("visit", userId);
+    }
 
     async function getComments() {
         const post = {
@@ -71,7 +76,11 @@
         {/if}
         {#if username !== ""}
             <br />
-            <a href="/profile"><p>{username}</p></a>
+            <Link to="/profile"
+                ><button on:click={visitProfile} class="user_name"
+                    ><p>{username}</p></button
+                ></Link
+            >
         {/if}
     </div>
     <p>posted on {postDate}</p>

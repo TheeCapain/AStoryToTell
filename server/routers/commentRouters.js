@@ -2,13 +2,13 @@
 import { Router } from 'express';
 import db from '../database/connection_sqlite.js'
 import io from "../utils/sockets.js";
+import { loginAuth } from '../utils/middleware.js';
 
 const commentRouter = Router();
 
 
 io.on("connection", (socket) => {
     socket.on("deletepostcomment", async (arg) => {
-        console.log(arg.id)
         await db.run(`DELETE FROM comments WHERE comment_id=?`, [arg.id])
         io.emit("update comments", arg)
     });
@@ -16,15 +16,13 @@ io.on("connection", (socket) => {
 
 io.on("connection", (socket) => {
     socket.on("insertComment", async (arg) => {
-        console.log(arg)
         const data = await db.run(`INSERT INTO comments(fk_user_id, fk_post_id, comment_content, comment_date) VALUES(?,?,?,?)`,
             [arg.userId, arg.postId, arg.comment, arg.date]);
         io.emit("update comments", arg)
     });
 });
 
-commentRouter.delete("/api/comments/delete", async (req, res) => {
-    console.log(req.body.id)
+commentRouter.delete("/api/comments/delete", loginAuth, async (req, res) => {
     await db.run(`DELETE FROM comments WHERE comment_id=?`, [req.body.id])
     res.send({ message: "Deleted from DB" })
 })
@@ -37,7 +35,7 @@ commentRouter.get("/api/comments/test", async (req, res) => {
     res.send({ comments: data });
 })
 
-commentRouter.post("/api/comments", async (req, res) => {
+commentRouter.post("/api/comments", loginAuth, async (req, res) => {
     const data = await db.run(`INSERT INTO comments(fk_user_id, fk_post_id, comment_content, comment_date) VALUES(?,?,?,?)`,
         [req.body.userId, req.body.postId, req.body.comment, req.body.date]);
     res.send({ comments: data });

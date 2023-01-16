@@ -11,10 +11,8 @@ loginRouter.post("/api/login", async (req, res) => {
     const user = await db.get("SELECT * FROM users WHERE user_mail=?", [req.body.email])
     if (user) {
         if (await passwordCompare(req.body.password, user.user_pw)) {
-      
             req.session.isLoggedIn = true
             req.session.userId = user.user_id
-            console.log(req.session)
             res.status(200).send({
                 username: user.user_name,
                 userid: user.user_id,
@@ -29,9 +27,8 @@ loginRouter.post("/api/login", async (req, res) => {
 });
 
 loginRouter.get("/logout", (req, res) => {
-    req.session.destroy();
-    console.log("session destroyed")
-    res.send({});
+req.session.destroy();
+res.send({});
 });
 
 

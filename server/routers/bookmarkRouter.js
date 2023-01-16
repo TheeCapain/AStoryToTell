@@ -9,7 +9,6 @@ bookmarkRouter.get("/api/bookmarks", async (req, res) => {
 })
 
 bookmarkRouter.post("/api/bookmarks/id", async (req, res) => {
-    console.log(req.body)
     const bookmarks = await db.all(`SELECT * FROM bookmarks 
     INNER JOIN posts
     ON posts.post_id = bookmarks.fk_post_id

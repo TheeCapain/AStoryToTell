@@ -6,9 +6,7 @@
         let response = await fetch(
             "https://api.themoviedb.org/3/trending/all/week?api_key=4a86f1670d0ac4ac719f017669984e10"
         ).then((response) => response.json());
-        posts = await response.results;
-        console.log(posts);
- 
+        posts = await response.results; 
     }
 
     onMount(fetchMovies);

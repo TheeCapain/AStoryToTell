@@ -8,7 +8,6 @@
     export let date;
 
     function visitProfile() {
-        localStorage.clear()
         localStorage.setItem("visit", userId);
     }
 

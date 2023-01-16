@@ -7,7 +7,6 @@ const postRouter = new Router()
 
 io.on("connection", (socket) => {
     socket.on("delete posts", async (arg) => {
-        console.log(arg.id)
         await db.run(`DELETE FROM posts WHERE post_id=?`, [arg.id])
         io.emit("update posts", arg)
     })

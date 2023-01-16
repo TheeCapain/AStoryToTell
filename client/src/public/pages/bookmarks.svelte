@@ -5,8 +5,6 @@
     import { onMount } from "svelte";
     let allPosts = [];
 
-    console.log($user);
-
     async function getPosts() {
         const post = {
             id: $user.id,
@@ -20,7 +18,6 @@
             body: JSON.stringify(post),
         }).then((response) => response.json());
         allPosts = await response.data;
-        console.log(allPosts);
     }
     onMount(getPosts);
 </script>
