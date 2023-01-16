@@ -112,7 +112,6 @@
     }
 
     .antal_opslag,
-    .point,
     .job {
         margin-right: 50px;
         padding: 5px 50px 5px 15px;

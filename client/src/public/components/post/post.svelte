@@ -83,7 +83,10 @@
             >
         {/if}
     </div>
+    {#if postDate != undefined}
     <p>posted on {postDate}</p>
+    {/if}
+   
     <h1 class="headline">{headline}</h1>
     {#if backdrop !== ""}
         <img
