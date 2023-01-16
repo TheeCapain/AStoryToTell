@@ -10,11 +10,6 @@
   });
 
   async function userData() {
-    let visit = localStorage.getItem("visit");
-
-    if (visit) {
-      userId = visit;
-    }
     let id = {
       id: userId,
     };

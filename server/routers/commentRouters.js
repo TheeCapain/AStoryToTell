@@ -3,7 +3,6 @@ import { Router } from 'express';
 import db from '../database/connection_sqlite.js'
 import io from "../utils/sockets.js";
 
-
 const commentRouter = Router();
 
 

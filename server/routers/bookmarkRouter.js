@@ -18,12 +18,9 @@ bookmarkRouter.post("/api/bookmarks/id", async (req, res) => {
 })
 
 bookmarkRouter.post("/api/bookmarks", async (req, res) => {
-    console.log(req.body)
-    console.log(req.body.userId)
-    console.log(req.body.postId)
-    
+
     let bookmark = await db.get(`SELECT * FROM bookmarks WHERE fk_user_id=? AND fk_post_id=?`, [req.body.userId, req.body.postId])
-        console.log(bookmark)
+
     if (bookmark) {
         await db.run(`DELETE FROM bookmarks WHERE fk_user_id=? AND fk_post_id=?`, [req.body.userId, req.body.postId])
         console.log("Deleted bookmark")

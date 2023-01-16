@@ -1,15 +1,20 @@
 import express from "express";
 import dotenv from "dotenv"
-
-dotenv.config()
-const app = express();
-
-app.use(express.json());
-//læs op på de her sessions
 import session from "express-session"
-//CORS LÆS OP PÅ HVAD DET HELT PRÆCIST ER
 import cors from "cors";
-app.use(cors());
+const app = express();
+app.use(cors({ credentials: true, origin: true }));
+app.use(express.json());
+//michala session 7 nodejs
+//læs op på de her sessions
+dotenv.config()
+
+app.use(session({
+    secret: "signs a cookie",
+    resave: false,
+    saveUninitialized: false
+}))
+
 //USER ROUTER
 import userRouter from "./routers/userRouter.js";
 app.use(userRouter)
@@ -34,10 +39,13 @@ app.use(bookmarkRouter)
 
 app.use(express.json());
 
-app.get("/", (res, req) => {
-    res.send({ message: "Hello world" })
+app.get("/", (req, res) => {
+    req.session.isAuth = true
+    res.send("test")
 })
+
 
 const PORT = process.env.PORT || 8080
 
 app.listen(PORT, () => console.log("Server running on port", PORT))
+

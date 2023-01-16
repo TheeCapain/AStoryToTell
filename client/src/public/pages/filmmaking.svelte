@@ -10,12 +10,12 @@
     });
 
     async function getPosts() {
-        let response = await fetch(
-            `http://localhost:8080/api/posts/filmmaking`
-        ).then((response) => response.json());
+        let response = await fetch(`http://localhost:8080/api/posts/filmmaking`).then(
+            (response) => response.json()
+        );
         allPosts = await response.posts;
     }
-onMount(getPosts)
+    onMount(getPosts);
 </script>
 
 <body>

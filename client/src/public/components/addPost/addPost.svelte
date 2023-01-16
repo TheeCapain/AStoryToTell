@@ -11,9 +11,9 @@
         if (post_content === undefined || post_title === undefined) {
             Toastr.warning("Error: Posts must have a title and Content");
         } else {
-            console.log(post_category);
             const new_post = {
                 userid: $user.id,
+                userName: $user.username,
                 title: post_title,
                 content: post_content,
                 category: post_category,
@@ -24,10 +24,14 @@
                 headers: {
                     "content-type": "application/json",
                 },
+                credentials: "include",
                 body: JSON.stringify(new_post),
             });
 
-            Toastr.success("Post created in " + post_category);
+            if(response.ok){
+                Toastr.success("Post created in " + post_category);
+            }
+        
         }
     }
 </script>

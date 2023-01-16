@@ -2,15 +2,14 @@
   import { Link } from "svelte-navigator";
   import { user } from "../../../global/global";
 </script>
-
 <link
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 />
 <div class="icon-bar">
   <nav id="icon-bar">
-    <Link to="/home"><a href="/"><i class="fa fa-home">Logo</i></a></Link>
-    <Link to="/home"><a href="/"><i class="fa fa-home" /></a></Link>
+    <Link to="/home"><a href="/"><i class="fa fa-home"></i></a></Link>
+    <Link to="/home"><a href="/"><i class="fa fa-globe"></i></a></Link>
     <Link to="/filmmaking"><a href="/"><i class="fa fa-camera" /></a></Link>
     <Link to="/bookwriting"><a href="/"><i class="fa fa-book" /></a></Link>
     <Link to="/music"><a href="/"><i class="fa fa-music" /></a></Link>
@@ -24,7 +23,7 @@
 
 <style>
   .icon-bar {
-    width: 100%; /* Full-width */
+    width: 100%; 
     position: sticky;
     top: 0;
   }

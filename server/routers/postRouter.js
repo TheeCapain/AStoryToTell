@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import db from '../database/connection_sqlite.js'
 import io from "../utils/sockets.js";
+import { loginAuth } from '../utils/middleware.js';
 
 const postRouter = new Router()
 
@@ -11,7 +12,6 @@ io.on("connection", (socket) => {
         io.emit("update posts", arg)
     })
 })
-
 
 
 postRouter.delete("/api/posts/deletes", async (req, res) => {
@@ -49,17 +49,19 @@ postRouter.post("/api/posts/id", async (req, res) => {
     const data = await db.all("SELECT * FROM posts WHERE fk_user_id =?;", [req.body.id])
     res.send({ posts: data })
 });
-//Kan denne sættes sammen med ID kaldet for atminimere kald til DB?
+
 postRouter.post("/api/countpost", async (req, res) => {
     const count = await db.get("SELECT COUNT(*) AS amount FROM posts WHERE fk_user_id =?", [req.body.id])
     res.send({ postAmount: count.amount })
 });
 
-postRouter.post("/api/posts", async (req, res) => {
+postRouter.post("/api/posts", loginAuth, async (req, res) => {
     if (req.body.userid && req.body.title && req.body.content) {
         await db.run("INSERT INTO posts (fk_user_id, post_category, post_title, post_content, post_date) VALUES(?,?,?,?,?)",
             [req.body.userid, req.body.category, req.body.title, req.body.content, req.body.date])
         res.status(200).send({ message: "Data was inserted" })
+    } else {
+        res.status(400).send({ message: "Error" })
     }
 });
 

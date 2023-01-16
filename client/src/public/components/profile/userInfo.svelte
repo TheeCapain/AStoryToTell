@@ -43,8 +43,8 @@
         user_bio = info.info[0].user_bio;
         user_roles = info.info[0].user_roles;
     }
-    onMount(userData)
-    onMount(countPosts)
+    onMount(userData);
+    onMount(countPosts);
 </script>
 
 <body>
@@ -64,7 +64,8 @@
                 {#if user_bio !== null}
                     <p>{user_bio}</p>
                 {:else}
-                    <p>{""}</p>--
+                    <p>{""}</p>
+                    --
                 {/if}
             </div>
             <div class="knap">

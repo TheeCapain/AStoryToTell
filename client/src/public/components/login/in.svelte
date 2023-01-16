@@ -1,6 +1,7 @@
 <script>
     import { useNavigate, useLocation } from "svelte-navigator";
-    import { user } from "../../../../global/global.js";
+    import toastr from "toastr";
+    import { user } from "../../../global/global.js";
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -21,17 +22,17 @@
             },
             body: JSON.stringify(login_user),
         });
-        let data = await response.json();
-        let username = data.username;
-        let id = data.userid;
-     
+
         if (response.ok) {
+            let data = await response.json();
+            let username = data.username;
+            let id = data.userid;
             $user = { username, id };
-            console.log($user)
-            localStorage.setItem("loggedIn", JSON.stringify($user))
-            const from =
-                ($location.state && $location.state.from) || "/home";
+            localStorage.setItem("loggedIn", JSON.stringify($user));
+            const from = ($location.state && $location.state.from) || "/home";
             navigate(from, { replace: true });
+        } else{
+            toastr.warning("Wrong mail or password")
         }
     }
 </script>

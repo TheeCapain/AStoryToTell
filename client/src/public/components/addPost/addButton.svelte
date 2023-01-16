@@ -1,6 +1,5 @@
 <script>
-    import { user } from "../../../global/global";
-    import { Router, Route, Link } from "svelte-navigator";
+    import { Link } from "svelte-navigator";
 </script>
 
 <div class="content">

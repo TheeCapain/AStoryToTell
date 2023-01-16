@@ -2,9 +2,13 @@
   import { Router, Link } from "svelte-navigator";
   import { user } from "../../../global/global.js";
 
-  function handleLogout() {
+  async function handleLogout() {
+    let response = await fetch("http://localhost:8080/logout").then(
+      (response) => response.json()
+    );
+    sessionStorage.clear()
     $user = null;
-    localStorage.clear()
+    localStorage.clear();
   }
 </script>
 
@@ -14,11 +18,11 @@
 />
 <Router>
   <div class="side-bar">
-    <Link to="/home"><a href="/"><i class="fa fa-home">Logo</i></a></Link>
+    <Link to="/home"><a href="/"><i class="fa fa-home"></i></a></Link>
     <Link to="/profile"><a href="/">Your profile</a></Link>
     <Link to="/newPost"><a href="/">Add Post</a></Link>
     <Link to="/bookmarks"><a href="/">Bookmarked</a></Link>
-    <Link to="/settings"> <a href="/">Settings</a></Link>
+    <Link to="/settings"><a href="/">Settings</a></Link>
     <button on:click={handleLogout}>Logout</button>
   </div>
 </Router>
@@ -40,7 +44,7 @@
     transition: all 0.3s ease;
     color: white;
     font-size: 20px;
-    text-decoration: none;;
+    text-decoration: none;
   }
 
   .side-bar button {
